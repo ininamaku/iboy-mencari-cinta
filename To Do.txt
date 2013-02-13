@@ -1,0 +1,6 @@
+1. GUI			-> Kenny. Dayang2 : Arie
+2. Algo			-> Ojan. Anah buah : Sharon Mamon Arie Kenny
+3. Struktur data	-> Ojan. Anak buah : Sharon Mamon Kenny 
+4. Laporan		-> Kenny. Dayang2 : semua
+5. Kerangka program 	-> Sharon. Dayang2 : semua
+6. Input output		-> Martha 
