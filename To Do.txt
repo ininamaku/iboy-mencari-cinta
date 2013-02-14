@@ -1,15 +1,11 @@
-1. GUI			-> Kenny. Dayang2 : Arie
+1. GUI			-> Kenny & Arie
+2. Fungsi dasar : 
+	a. Fitness Function (hitung enlightment) : Kenny 
+	b. Initialize -> random tp sesuai dg jadwal : Sharon  
+	c. Selection & Cross over : Arie & Mamon
+	d. Mutasi : Ahmad
 
-2. Algo			-> Ojan. Anah buah : Sharon Mamon Arie Kenny
-
-3. Struktur data	-> Done tapi blm di cek
-
-4. Laporan		-> Kenny. Dayang2 : semua
-			   Di soal sih ga ada laporan 
-			   
-5. Kerangka program 	-> Sharon. Dayang2 : semua
-
-6. Input output		-> Martha 
+3. Parser input output -> Mamon
 
 Log
 	Ahmad Fauzan
