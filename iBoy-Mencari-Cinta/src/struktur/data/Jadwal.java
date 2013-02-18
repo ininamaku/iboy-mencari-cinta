@@ -1,10 +1,13 @@
 package struktur.data;
 
 public class Jadwal {
-    Day[] day = new Day[7];
-
-    Jadwal() {
-        for (int i=0; i<7; i++) {
+    Day[] day;
+    int jumlahMinggu; 
+    
+    public Jadwal (int jumlahMinggu_) {
+        day = new Day[7*jumlahMinggu_];
+        jumlahMinggu = jumlahMinggu_;
+        for (int i=0; i<7*jumlahMinggu_; i++) {
             day[i] = new Day();
         }
     }
@@ -12,23 +15,31 @@ public class Jadwal {
     /* 
      * Mengeset hour tertentu pada suatu d menjadi str
      */
-    void setDayHour (int d, int h, String str) {
+    public void setDayHour (int d, int h, String str) {
         day[d].hour[h] = str;
+    }
+
+    public int getJumlahMinggu() {
+        return jumlahMinggu;
     }
     
     /* 
      * Get isi dari hour tertentu pada suatu d 
      */
-    String getDayHour (int d, int h) {
+    public String getDayHour (int d, int h) {
         return day[d].hour[h];
+    }
+
+    public Day[] getDay() {
+        return day;
     }
     
     /* 
      * Print jadwal iBoy selama 1 minggu 
      */
-    void printJadwal() {
+    public void printJadwal() {
         System.out.println("Jadwal iBoy");
-        for (int i = 0; i<7; i++) {
+        for (int i = 0; i<day.length; i++) {
             for (int j=0; j<10; j++) {
                 System.out.print(day[i].hour[j] + " ");
             }
