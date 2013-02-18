@@ -10,6 +10,9 @@
 Log
 	Ahmad Fauzan
 		- class IBoy
+		- method Initialize
+		- method validateJadwal
+		- method random
 		
 	Arie Tando
 		- class Kandidat
@@ -24,3 +27,8 @@ Log
 	Sharon Loh
 		- class Day
 		- class Jadwal
+		- method countEnlightment
+		- method validateJadwal
+		- method Initialize
+		- method isBarang
+		- method isKandidat

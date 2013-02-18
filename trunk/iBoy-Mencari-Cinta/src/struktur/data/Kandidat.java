@@ -14,6 +14,7 @@ import java.util.Vector;
  * @author M500-S430
  */
 public class Kandidat {
+    private String kandidat_id;
     private int enlightenment;
     private int energi;
     private int maxjam;
@@ -25,8 +26,9 @@ public class Kandidat {
     {
     }
     
-    public Kandidat(int a,int b, int c)
+    public Kandidat(String id, int a,int b, int c)
     {
+        kandidat_id = id; 
         enlightenment = a;
         energi = b;
         maxjam = c;
@@ -39,6 +41,14 @@ public class Kandidat {
                 jadwal[i][j] = false;
             }
         }
+    }
+
+    public String getKandidat_id() {
+        return kandidat_id;
+    }
+
+    public boolean[][] getJadwal() {
+        return jadwal;
     }
     
     public int getEnlightenment()
@@ -69,6 +79,18 @@ public class Kandidat {
     public boolean getJadwal(int hari,int jam)
     {
         return jadwal[hari][jam];
+    }
+
+    public void setKandidat_id(String kandidat_id) {
+        this.kandidat_id = kandidat_id;
+    }
+
+    public void setJadwal(boolean[][] jadwal) {
+        this.jadwal = jadwal;
+    }
+
+    public void setPrereq(List<String> prereq) {
+        this.prereq = prereq;
     }
     
     public void setEnlightenment(int newen)
