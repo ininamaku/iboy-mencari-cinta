@@ -19,8 +19,8 @@ public class Kandidat {
     private int energi;
     private int maxjam;
     private int sisajam;
-    private List<String> prereq;
-    private boolean[][] jadwal = new boolean[7][10];
+    private List<String> prereq; //string kode barang
+    private boolean[][] jadwal = new boolean[7][10]; //cuekin aja
     
     public Kandidat()
     {

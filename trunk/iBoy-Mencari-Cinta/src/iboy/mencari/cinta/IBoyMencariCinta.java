@@ -5,6 +5,14 @@ import java.util.List;
 import java.util.Vector;
 import struktur.data.*;
 import java.util.Random;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class IBoyMencariCinta {
     List<Jadwal> jadwalIboy; 
@@ -12,6 +20,7 @@ public class IBoyMencariCinta {
     List<Kandidat> listOfKandidat;  //N+1..Max
     List<Jadwal> jadwalKandidat;
     IBoy iboy; 
+    int jumlahminggu;
     
     private int random (int maxIndex) {
         Random R = new Random();
@@ -121,19 +130,71 @@ public class IBoyMencariCinta {
             jadwalIboy.add(tempJadwal);
         }
     }
-    
+	
+    public void Parser(String origin){
+       iboy = new IBoy();
+       listOfBarang = new Vector<Barang>();  
+       listOfKandidat = new Vector<Kandidat>(); 
+       try {
+            StringBuilder text = new StringBuilder();
+            Scanner scanner = new Scanner(new FileInputStream("input.txt"));
+            try {
+                while (scanner.hasNextLine()) {
+                    text.append(scanner.nextLine()).append("\n");
+                }
+            } finally {
+                scanner.close();
+            }
+            String n = new String(text);
+            String line[] = n.split("[\n]");
+            String firstLineSplit[] = line[0].split(" ");
+            iboy.setMoney(Integer.parseInt(firstLineSplit[0]));
+            iboy.SetMoneyPerDay(Integer.parseInt(firstLineSplit[1]));
+            jumlahminggu = new Integer(Integer.parseInt(firstLineSplit[2]));
+            iboy.SetEnergy(Integer.parseInt(firstLineSplit[3]));
+            int jumlahKandidat = new Integer(Integer.parseInt(line[1]));
+            for (int i=0;i<jumlahKandidat; i++){
+                String lineSplit[] = line[2+i].split(" ");
+                Kandidat kandidat = new Kandidat(new Integer(i).toString(),Integer.parseInt(lineSplit[0]),Integer.parseInt(lineSplit[1]),Integer.parseInt(lineSplit[2]));
+                if (lineSplit[3].equals("-")){
+                    for(int j=1;j<lineSplit[3].length();j++){
+                        kandidat.addPrereq(lineSplit[3].substring(j-1,j));
+                    }
+                }
+                listOfKandidat.add(kandidat);  
+            }    
+            int jumlahBarang = new Integer(Integer.parseInt(line[jumlahKandidat+2]));
+            for (int i=0;i<jumlahBarang; i++){
+                String lineSplit[] = line[jumlahKandidat+3+i].split(" ");
+                Barang barang = new Barang();
+                barang.setKode(lineSplit[0]);
+                
+                barang.setHarga(Integer.parseInt(lineSplit[1]));
+                barang.setRestock(Integer.parseInt(lineSplit[2]));
+                listOfBarang.add(barang);
+                }
+            }
+   
+       
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   
     
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        /* Construct iboy dll here */
-        
+    public static void main(String[] args){
+        IBoyMencariCinta ibot = new IBoyMencariCinta();
+        ibot.Parser("input.txt");
+         /* Construct iboy dll here */
+
         /* read input */
-        
+            
         /* call genetic algo */
- 
+
         /* the result print to output file */
     }
 }

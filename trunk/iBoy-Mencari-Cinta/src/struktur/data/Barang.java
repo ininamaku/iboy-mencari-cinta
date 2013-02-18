@@ -18,6 +18,11 @@ public class Barang {
     
     public Barang()
     {
+        kode = "";
+        harga = 0;
+        restock = 0;
+        waktu = 0;
+        sisabarang = 0;
     }
     
     public Barang(String a,int b,int c,int d)
