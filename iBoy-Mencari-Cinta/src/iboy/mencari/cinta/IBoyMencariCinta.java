@@ -21,6 +21,7 @@ public class IBoyMencariCinta {
     List<Jadwal> jadwalKandidat;
     IBoy iboy; 
     int jumlahminggu;
+    int jumlahKandidat;
     
     private int random (int maxIndex) {
         Random R = new Random();
@@ -131,10 +132,12 @@ public class IBoyMencariCinta {
         }
     }
 	
-    public void Parser(String origin){
+    public void Parser(){
        iboy = new IBoy();
        listOfBarang = new Vector<Barang>();  
-       listOfKandidat = new Vector<Kandidat>(); 
+       listOfKandidat = new Vector<Kandidat>();
+       jadwalKandidat = new Vector<Jadwal>();
+       
        try {
             StringBuilder text = new StringBuilder();
             Scanner scanner = new Scanner(new FileInputStream("input.txt"));
@@ -152,7 +155,7 @@ public class IBoyMencariCinta {
             iboy.SetMoneyPerDay(Integer.parseInt(firstLineSplit[1]));
             jumlahminggu = new Integer(Integer.parseInt(firstLineSplit[2]));
             iboy.SetEnergy(Integer.parseInt(firstLineSplit[3]));
-            int jumlahKandidat = new Integer(Integer.parseInt(line[1]));
+            jumlahKandidat = new Integer(Integer.parseInt(line[1]));
             for (int i=0;i<jumlahKandidat; i++){
                 String lineSplit[] = line[2+i].split(" ");
                 Kandidat kandidat = new Kandidat(new Integer(i).toString(),Integer.parseInt(lineSplit[0]),Integer.parseInt(lineSplit[1]),Integer.parseInt(lineSplit[2]));
@@ -179,6 +182,40 @@ public class IBoyMencariCinta {
         catch (FileNotFoundException ex) {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
+       
+       try {
+            StringBuilder text = new StringBuilder();
+            Scanner scanner = new Scanner(new FileInputStream("jadwal.txt"));
+            try {
+                while (scanner.hasNextLine()) {
+                    text.append(scanner.nextLine()).append("\n");
+                }
+            } finally {
+                scanner.close();
+            }
+            String n = new String(text);
+            String kandidat[] = n.split("[\n]");
+            int hari;
+            int jam;
+            for (int i=0;i<jumlahKandidat;i++){
+                hari=0;jam=0;
+                Jadwal jadwalKand = new Jadwal (jumlahminggu);
+                for(int j=1;j<kandidat[i].length();j++){
+                    jadwalKand.setDayHour(hari,jam, kandidat[i].substring(j-1,j));
+                    jam++;
+                    if (jam>9){
+                        hari++;
+                        jam=0;
+                    }
+                }
+                jadwalKandidat.add(jadwalKand);
+            }
+        }
+   
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
    
     
@@ -188,7 +225,7 @@ public class IBoyMencariCinta {
      */
     public static void main(String[] args){
         IBoyMencariCinta ibot = new IBoyMencariCinta();
-        ibot.Parser("input.txt");
+        ibot.Parser();
          /* Construct iboy dll here */
 
         /* read input */
