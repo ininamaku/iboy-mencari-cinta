@@ -69,7 +69,7 @@ public class IBoy {
      * @return kalo bisa beli barang true kalo enggak cukup uang false
      */
     public boolean beliBarang(Barang barang) {
-        if(money < barang.getHarga()) return false;
+        if(money < barang.getHarga() || barang.getSisabarang() <= 0) return false;
         energy -= 1;
         String kode = barang.getKode();
         money -= barang.getHarga();
