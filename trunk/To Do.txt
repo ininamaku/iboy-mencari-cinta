@@ -1,7 +1,7 @@
 1. GUI			-> Kenny & Arie
 2. Fungsi dasar : 
-	a. Fitness Function (hitung enlightment) : Kenny 
-	b. Initialize -> random tp sesuai dg jadwal : Sharon  
+	a. Fitness Function (hitung enlightment) : Kenny (Belum Di test)
+	b. Initialize -> random tp sesuai dg jadwal : Sharon (Belum Di test) 
 	c. Selection & Cross over : Arie & Mamon
 	d. Mutasi : Ahmad
 

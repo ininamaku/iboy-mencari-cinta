@@ -33,6 +33,11 @@ public class Barang {
         waktu = d;
         sisabarang = c;
     }
+
+    public int getSisabarang() {
+        return sisabarang;
+    }
+
     
     public String getKode()
     {
