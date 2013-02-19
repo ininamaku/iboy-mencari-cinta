@@ -31,6 +31,7 @@ public class IBoyMencariCinta {
     private int isBarang (String id) {
         for (int i=0; i<listOfBarang.size(); i++) {
             if (id.compareTo(listOfBarang.get(i).getKode()) == 0) {
+                //System.out.println("ID Barang yang dicek : " + listOfBarang.get(i).getKode());
                 return i;
             }
         }
@@ -40,6 +41,7 @@ public class IBoyMencariCinta {
     private int isKandidat (String id) {
         for (int i=0; i<listOfKandidat.size(); i++) {
             if (id.compareTo(listOfKandidat.get(i).getKandidat_id()) == 0) {
+               // System.out.println("ID Kandidat yang dicek : " + listOfKandidat.get(i).getKandidat_id() );
                 return i;
                 
             }
@@ -53,6 +55,14 @@ public class IBoyMencariCinta {
             barang.resetbarang();
         }
     }
+    
+    private void ResetJamKandidat () {
+        for (int i=0; i<listOfKandidat.size(); i++) {
+            Kandidat k = listOfKandidat.get(i);
+            k.resetjam();
+        }
+    }
+    
     /*
      * Belum di tes
      */
@@ -61,27 +71,36 @@ public class IBoyMencariCinta {
         String currentActivity = new String(); 
         for (int i=0; i<jadwal.getJumlahMinggu() * 7; i++) {
             for (int j=0; j<10; j++) {
+                //System.out.println("Energi iboy : " + iboyClone.getEnergy());
                 currentActivity = jadwal.getDayHour(i, j);
                 int barangIdx = isBarang(currentActivity);
                 int kandidatIdx = isKandidat(currentActivity);
                 if (kandidatIdx != -1) {
+                    //System.out.println("Cek kandidat");
                     if (jadwalKandidat.get(kandidatIdx).getDayHour(i, j).compareTo("0") == 0) {
+                        //System.out.println("jadwal tidak ada");
                         return i;
                     }
+                    
                     if (! iboyClone.bisaDikencani(listOfKandidat.get(kandidatIdx))) {
+                       // System.out.println("iboy capek");
                         return i; 
                     }
                     else {
+                        //System.out.println("lagi kencan niye");
                         iboyClone.Kencani(listOfKandidat.get(kandidatIdx));
                     }
                 }
                 else
                 if (barangIdx != -1) {
+                    //System.out.println("cek barang");
                     if (! iboyClone.beliBarang(listOfBarang.get(barangIdx))) {
+                       // System.out.println("iboy bokek");
                         return i; 
                     }   
                 }
             }
+            ResetJamKandidat();
             ReStock();
             iboyClone.nextDay();
         }
@@ -105,7 +124,6 @@ public class IBoyMencariCinta {
                     enlightment += listOfKandidat.get(kandidatIdx).getEnlightenment();
                 }
             }
-            iboyClone.nextDay();
         }
         return enlightment;
     }
@@ -118,27 +136,44 @@ public class IBoyMencariCinta {
         jadwalIboy = new Vector<Jadwal>();
         for (int i=0; i<4; i++) { //jumlah populasi
             //System.out.println("Populasi ke- " + i);
-            
+            IBoy iboyClone = iboy.clone();
             Jadwal tempJadwal = new Jadwal(jumlahMinggu);
             
             for (int j=0; j<jumlahMinggu*7; j++) { //day ke berapa
                 //System.out.println("Day-" + j);
-                
                 for (int k=0; k<10; k++) { //jam ke berapa
                     int hasilRandom = random(listOfBarang.size() + listOfKandidat.size());
                     String tempID = new String();
                     if (hasilRandom < listOfBarang.size()) {
-                        tempID = listOfBarang.get(hasilRandom).getKode();
-                    }
-                    else {
-                        tempID = listOfKandidat.get(hasilRandom-listOfBarang.size()).getKandidat_id();
-                        //System.out.println("Yeah : " + jadwalKandidat.get(hasilRandom-listOfBarang.size()).getDayHour(j, k));
-                        if (jadwalKandidat.get(hasilRandom-listOfBarang.size()).getDayHour(j, k).compareTo("0") == 0) {
+                        if (!iboyClone.beliBarang(listOfBarang.get(hasilRandom))) {
                             tempID = "0";
+                        } else {
+                            tempID = listOfBarang.get(hasilRandom).getKode();
                         }
                     }
+                    else {
+                        Kandidat tempKandidat = listOfKandidat.get(hasilRandom-listOfBarang.size());
+                        tempID = tempKandidat.getKandidat_id();
+                        if (jadwalKandidat.get(hasilRandom-listOfBarang.size()).getDayHour(j, k).compareTo("0") == 0) {
+                            tempID = "0"; //kandidat sibuk
+                        }
+                        else {
+                            if (iboyClone.bisaDikencani(tempKandidat)) {
+                                tempID = tempKandidat.getKandidat_id();
+                                iboyClone.Kencani(tempKandidat);
+                            }
+                            else {
+                                tempID = "0";
+                            }
+                        }
+                    }
+                    
                     tempJadwal.setDayHour(j,k,tempID);                
                 }
+                
+                ResetJamKandidat();
+                ReStock();
+                iboyClone.nextDay();
             }
             
             jadwalIboy.add(tempJadwal);
@@ -171,7 +206,7 @@ public class IBoyMencariCinta {
             jumlahKandidat = new Integer(Integer.parseInt(line[1]));
             for (int i=0;i<jumlahKandidat; i++){
                 String lineSplit[] = line[2+i].split(" ");
-                Kandidat kandidat = new Kandidat(new Integer(i).toString(),Integer.parseInt(lineSplit[0]),Integer.parseInt(lineSplit[1]),Integer.parseInt(lineSplit[2]));
+                Kandidat kandidat = new Kandidat(new Integer(i+1).toString(),Integer.parseInt(lineSplit[0]),Integer.parseInt(lineSplit[1]),Integer.parseInt(lineSplit[2]));
                 if (lineSplit[3].equals("-")){
                     for(int j=1;j<lineSplit[3].length();j++){
                         kandidat.addPrereq(lineSplit[3].substring(j-1,j));
@@ -241,19 +276,23 @@ public class IBoyMencariCinta {
     /**
      * @param args the command line arguments
      */
-    /*
+    
     public static void main(String[] args){
         IBoyMencariCinta ibot = new IBoyMencariCinta();
         ibot.Parser(); // read input & parse
         ibot.printIboy();
+        
         ibot.initialize(ibot.jumlahminggu);
+        
         for (int i=0; i<ibot.jadwalIboy.size(); i++) {
             System.out.print("POPULASI ke-" + i);
             ibot.jadwalIboy.get(i).printJadwal();        
+            System.out.println("Validate jadwal : "+ ibot.validateJadwal(ibot.jadwalIboy.get(i))); 
         }
+        
         /*
         /* call genetic algo */
         
         /* the result print to output file */
-    /*}*/
+    }
 }
