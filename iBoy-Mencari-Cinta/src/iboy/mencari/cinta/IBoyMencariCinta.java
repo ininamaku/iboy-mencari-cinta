@@ -265,7 +265,93 @@ public class IBoyMencariCinta {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
+    
+    public void selection () {
+        int[] en = new int[4];
+        int index = 0;
+        int minEn = 99999;
+        int minIdx = 0;
+        int[] crossIdx = new int[4];
+        
+        //for each populasi jadwal, hitung enlightment & hitung englightment terkecil
+        for (int i=0; i<4; i++) {
+            en[i] = countEnlightment (jadwalIboy.get(i));
+            //System.out.println("en - "+i+" = " + en[i]);
+            if (en[i] < minEn) {
+                minIdx = i;
+                minEn = en[i];
+            }
+        }
+        
+        //cari index untuk crossOver
+        int temp = 0;
+        for (int i=0; i<4; i++) {
+            if (i != minIdx) {
+                if ( (i+1 != minIdx) && (i+1 < 4) ) {
+                    crossIdx[temp] = i;
+                    temp++;
+                    crossIdx[temp] = i+1;
+                    temp++;
+                }
+                else 
+                if ( (i+2 != minIdx) && (i+2 < 4) ) {
+                    crossIdx[temp] = i;
+                    temp++;
+                    crossIdx[temp] = i+2;
+                    temp++;
+                }
+            }
+        }
+        
+        //crossOver Jadwal crossIdx[0] & Jadwal crossIdx[1]
+        List<Jadwal> crossedJadwalA = CrossOver(jadwalIboy.get(crossIdx[0]), jadwalIboy.get(crossIdx[1]) );
+        //crossOver Jadwal crossIdx[2] & Jadwal crossIdx[3]
+        List<Jadwal> crossedJadwalB = CrossOver(jadwalIboy.get(crossIdx[2]), jadwalIboy.get(crossIdx[3]) );
+        
+        jadwalIboy.clear();
+        jadwalIboy.addAll(crossedJadwalA);
+        jadwalIboy.addAll(crossedJadwalB);
+        //System.out.println("minEn = " + minEn + " minIdx = " + minIdx);
+    }
+    
+    public List<Jadwal> CrossOver(Jadwal jadwalA, Jadwal jadwalB) {
+        int crossIndex = random(jumlahminggu * 7 * 10);
+        List<Jadwal> crossedJadwal = new Vector<Jadwal>();
+        Jadwal jadwalA_ = new Jadwal(jumlahminggu);
+        Jadwal jadwalB_ = new Jadwal(jumlahminggu);
+        for (int day=0; day<jumlahminggu*7; day++) {
+            for (int hour=0; hour<10; hour++) {
+                if (crossIndex > (day*10+hour)) {
+                    jadwalA_.setDayHour(day, hour, jadwalA.getDayHour(day, hour));
+                    jadwalB_.setDayHour(day, hour, jadwalB.getDayHour(day, hour));
+                    //System.out.println("crossIndex = " + crossIndex);
+                    //System.out.println("day & hour = " + day + " " + hour);
+                }
+                else {
+                    jadwalB_.setDayHour(day, hour, jadwalA.getDayHour(day, hour));
+                    jadwalA_.setDayHour(day, hour, jadwalB.getDayHour(day, hour));
+                }
+            }
+        }
+        crossedJadwal.add(jadwalA_);
+        crossedJadwal.add(jadwalB_);
+        
+        /*
+        System.out.println("Before : ");
+        jadwalA.printJadwal();
+        System.out.println("-------------");
+        jadwalB.printJadwal();
+        
+        System.out.println("After : ");
+        jadwalA_.printJadwal();
+        System.out.println("Validate A : " + validateJadwal(jadwalA_));
+        System.out.println("-------------");
+        jadwalB_.printJadwal();
+        System.out.println("Validate B : " + validateJadwal(jadwalB_));
+        */
+        return crossedJadwal;
+    }
+    
     public void printIboy(){
         iboy.printData();
     }
@@ -294,6 +380,7 @@ public class IBoyMencariCinta {
             System.out.println(ibot.jadwalIboy.get(i));        
         }
         
+        ibot.selection();
         /*
         /* call genetic algo */
         
