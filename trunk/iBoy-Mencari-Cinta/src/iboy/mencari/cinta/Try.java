@@ -12,7 +12,6 @@
 package iboy.mencari.cinta;
 
 import java.io.File;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -24,7 +23,8 @@ public class Try extends javax.swing.JFrame {
 
     private JFileChooser chooser1;
     private JFileChooser chooser2;
-    private Icon[] icon = new Icon[10];
+    private int currentKandidat;
+    private IBoyMencariCinta ibot;
     /** Creates new form Try */
     public Try() {
         initComponents();
@@ -32,9 +32,21 @@ public class Try extends javax.swing.JFrame {
         jPanel2.setVisible(false);
         chooser1 = new JFileChooser();
         chooser2 = new JFileChooser();
-        
+        currentKandidat = 1;
+        ibot = new IBoyMencariCinta();
     }
 
+    public void dataKandidat(int no)
+    {
+        switch (no)
+        {
+            case 1 : {jTextField6.setText("Kania Azrina"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq().get(1) +""); break;}
+            case 2 : {jTextField6.setText("Sharon Loh"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq()+""); break;}
+            case 3 : {jTextField6.setText("Mamon"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq()+""); break;}
+            case 4 : {jTextField6.setText("nunu"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq()+""); break;}
+            
+        }    
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -373,8 +385,24 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        currentKandidat += 1;
         String dir = System.getProperty("user.dir");
-        jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png"));
+        if (currentKandidat < (ibot.jumlahKandidat+1)){
+        switch (currentKandidat) {
+            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(1); break;}
+            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(2); break;}
+            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(3); break;}
+            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(4); break;}
+            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(5); break;}
+            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(6); break;}
+            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(7); break;}
+            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(8); break;}
+            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(9); break;}
+            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(10); break;}
+        }
+        }
+        else
+            currentKandidat = ibot.jumlahKandidat;
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -405,14 +433,38 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        ibot.parseInput(jTextField40.getText());
+        ibot.parseJadwal(jTextField41.getText());
+        jTextField34.setText(ibot.iboy.getMoney()+"");
+        jTextField35.setText(ibot.iboy.getMoneyPerDay()+"");
+        jTextField36.setText(ibot.jumlahminggu+"");
+        jTextField37.setText(ibot.iboy.getMaxEnergy()+"");
+        jTextField38.setText(ibot.jumlahKandidat+"");
+        jTextField39.setText(ibot.listOfBarang.size()+"");
         
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+        currentKandidat -= 1;
         String dir = System.getProperty("user.dir");
-        System.out.println(dir);
-        jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png"));
+        if (currentKandidat < 1)
+        {   currentKandidat = 1;}
+        
+        if (currentKandidat < (ibot.jumlahKandidat+1)){
+        switch (currentKandidat) {
+            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(1); break;}
+            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(2); break;}
+            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(3); break;}
+            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(4); break;}
+            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(5); break;}
+            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(6); break;}
+            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(7); break;}
+            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(8); break;}
+            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(9); break;}
+            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(10); break;}
+            }
+        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
