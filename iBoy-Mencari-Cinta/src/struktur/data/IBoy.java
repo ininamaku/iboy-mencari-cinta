@@ -38,7 +38,7 @@ public class IBoy {
         ib.energy = energy;
         ib.maxEnergy = maxEnergy;
         ib.enlightment = enlightment;
-        ib.listOfBarang = new Vector<String>(listOfBarang);
+        ib.listOfBarang = new Vector<String>();
         return ib;
     }
 
@@ -117,6 +117,7 @@ public class IBoy {
         boolean prereqDipenuhi = true;
         List<String> s = kandidat.getPrereq();
         for(int i =0; i< s.size(); i++) {
+            //System.out.println("Check Prereq : " + s.get(i));
             prereqDipenuhi = prereqDipenuhi && listOfBarang.contains(s.get(i));
             if(!prereqDipenuhi) break;
         }
