@@ -13,19 +13,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author M500-S430
  */
 public class testGUI extends javax.swing.JFrame {
-    private JFileChooser chooser1;
-    private JFileChooser chooser2;
-    private FileNameExtensionFilter filter;
+    
     /**
      * Creates new form testGUI
      */
     public testGUI() {
         initComponents();
-        chooser1 = new JFileChooser();
-        chooser2 = new JFileChooser();
-        filter = new FileNameExtensionFilter("txt file","txt");
-        chooser1.addChoosableFileFilter(filter);
-        chooser2.addChoosableFileFilter(filter);
+        
     }
 
     /**
@@ -37,117 +31,64 @@ public class testGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        browseText = new javax.swing.JTextField();
-        browseBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        runBtn = new javax.swing.JButton();
-        jadwalBtn = new javax.swing.JButton();
-        jadwalText = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 650));
+        getContentPane().setLayout(null);
 
-        browseBtn.setText("input");
-        browseBtn.addActionListener(new java.awt.event.ActionListener() {
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 650));
+        jPanel1.setLayout(null);
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                browseBtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(60, 530, 73, 40);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\main.png")); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 2, 800, 610);
 
-        runBtn.setText("run");
-        runBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                runBtnActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(0, 0, 800, 650);
 
-        jadwalBtn.setText("jadwal");
-        jadwalBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jadwalBtnActionPerformed(evt);
-            }
-        });
+        jPanel2.setPreferredSize(new java.awt.Dimension(800, 650));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jadwalText, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
-                                .addComponent(browseText))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jadwalBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(browseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(runBtn))
-                .addContainerGap(18, Short.MAX_VALUE))
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\tuts.png")); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 17, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(browseText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(browseBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jadwalBtn)
-                    .addComponent(jadwalText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(runBtn)
-                .addGap(14, 14, 14)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                .addContainerGap())
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 50, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(0, 0, 800, 650);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void browseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseBtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String dir = System.getProperty("user.dir");
-        chooser1.setCurrentDirectory(new File(dir));
-        int ret = chooser1.showOpenDialog(this);
-        if(ret == JFileChooser.APPROVE_OPTION){
-            File f = chooser1.getSelectedFile();
-            browseText.setText(f.getAbsolutePath());
-        }
-    }//GEN-LAST:event_browseBtnActionPerformed
-
-    private void jadwalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jadwalBtnActionPerformed
-        // TODO add your handling code here:
-        String dir = System.getProperty("user.dir");
-        chooser2.setCurrentDirectory(new File(dir));
-        int ret = chooser2.showOpenDialog(this);
-        if(ret == JFileChooser.APPROVE_OPTION){
-            File f = chooser2.getSelectedFile();
-            jadwalText.setText(f.getAbsolutePath());
-        }
-    }//GEN-LAST:event_jadwalBtnActionPerformed
-
-    private void runBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_runBtnActionPerformed
-        // TODO add your handling code here:
-        IBoyMencariCinta ibot = new IBoyMencariCinta();
-        ibot.Parser(); // read input & parse
-        ibot.printIboy();
-        jTextArea1.setText(ibot.printIboy2());
-        ibot.initialize(ibot.jumlahminggu);
-        for (int i=0; i<ibot.jadwalIboy.size(); i++) {
-            System.out.print("POPULASI ke-" + i);
-            ibot.jadwalIboy.get(i).printJadwal();        
-        }
-    }//GEN-LAST:event_runBtnActionPerformed
+        jPanel1.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,12 +133,10 @@ public class testGUI extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton browseBtn;
-    private javax.swing.JTextField browseText;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JButton jadwalBtn;
-    private javax.swing.JTextField jadwalText;
-    private javax.swing.JButton runBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
