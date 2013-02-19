@@ -338,13 +338,11 @@ public class IBoyMencariCinta {
         return crossedJadwal;
     }
 
-    public void Mutation() {
+    public void Mutate(Jadwal jadwal) {
         String s;
         int idx;
         int id;
-        for (int i = 0; i < jadwalIboy.size(); i++) {
-            Jadwal jadwal = jadwalIboy.get(i);
-            ValidationResult valres = validateJadwal(jadwalIboy.get(i));
+        ValidationResult valres = validateJadwal(jadwal);
             switch (valres.type) {
                 case ValidationResult.VALIDATION_OK:
 
@@ -363,6 +361,7 @@ public class IBoyMencariCinta {
                     if (id == idx) {
                         jadwal.setDayHour(valres.d, valres.h, "0");
                     }
+                    Mutate(jadwal);
                     break;
                 case ValidationResult.INVALID_GIFT:
                     s = jadwal.getDayHour(valres.d, valres.h);
@@ -378,8 +377,16 @@ public class IBoyMencariCinta {
                     if (id == idx) {
                         jadwal.setDayHour(valres.d, valres.h, "0");
                     }
+                    Mutate(jadwal);
                     break;
             }
+    }
+    
+    public void Mutation() {
+        
+        for (int i = 0; i < jadwalIboy.size(); i++) {
+            Jadwal jadwal = jadwalIboy.get(i);
+            Mutate(jadwal);
         }
     }
 
