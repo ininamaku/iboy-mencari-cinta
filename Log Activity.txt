@@ -10,6 +10,8 @@ Log
 		- method Initialize
 		- method validateJadwal
 		- method random
+		- method mutation
+		- debug
 		
 	Arie Tando
 		- class Kandidat
@@ -29,3 +31,5 @@ Log
 		- method Initialize
 		- method isBarang
 		- method isKandidat
+		- method selection
+		- method crossover
