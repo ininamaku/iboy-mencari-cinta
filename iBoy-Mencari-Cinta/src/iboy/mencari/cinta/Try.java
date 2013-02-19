@@ -11,17 +11,27 @@
 
 package iboy.mencari.cinta;
 
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author kaniaazrina
  */
 public class Try extends javax.swing.JFrame {
 
+    private JFileChooser chooser1;
+    private JFileChooser chooser2;
+    private Icon[] icon = new Icon[10];
     /** Creates new form Try */
     public Try() {
         initComponents();
-        jPanel1.setVisible(false);
-        jPanel2.setVisible(true);
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(false);
+        chooser1 = new JFileChooser();
+        chooser2 = new JFileChooser();
         
     }
 
@@ -34,6 +44,7 @@ public class Try extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTextField34 = new javax.swing.JTextField();
         jTextField35 = new javax.swing.JTextField();
@@ -41,6 +52,11 @@ public class Try extends javax.swing.JFrame {
         jTextField37 = new javax.swing.JTextField();
         jTextField38 = new javax.swing.JTextField();
         jTextField39 = new javax.swing.JTextField();
+        jTextField40 = new javax.swing.JTextField();
+        jTextField41 = new javax.swing.JTextField();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -82,6 +98,10 @@ public class Try extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -107,8 +127,39 @@ public class Try extends javax.swing.JFrame {
         jTextField38.setBounds(580, 360, 80, 20);
         jPanel1.add(jTextField39);
         jTextField39.setBounds(580, 400, 80, 20);
+        jPanel1.add(jTextField40);
+        jTextField40.setBounds(420, 90, 210, 20);
+        jPanel1.add(jTextField41);
+        jTextField41.setBounds(420, 130, 210, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\tuts.png")); // NOI18N
+        jButton9.setText("Browse");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton9);
+        jButton9.setBounds(650, 90, 80, 20);
+
+        jButton10.setText("Browse");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton10);
+        jButton10.setBounds(650, 130, 80, 20);
+
+        jButton11.setText("open");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton11);
+        jButton11.setBounds(430, 160, 110, 23);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tuts.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(800, 620));
         jLabel1.setMinimumSize(new java.awt.Dimension(800, 620));
         jPanel1.add(jLabel1);
@@ -199,21 +250,31 @@ public class Try extends javax.swing.JFrame {
 
         jButton3.setText("<");
         jPanel2.add(jButton3);
-        jButton3.setBounds(50, 60, 50, 23);
+        jButton3.setBounds(260, 520, 50, 23);
 
         jButton4.setText(">");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton4);
-        jButton4.setBounds(100, 60, 50, 23);
+        jButton4.setBounds(320, 520, 50, 23);
 
         jButton5.setText("Play");
         jPanel2.add(jButton5);
-        jButton5.setBounds(50, 30, 60, 23);
+        jButton5.setBounds(110, 520, 60, 23);
 
         jButton6.setText("Pause");
         jPanel2.add(jButton6);
-        jButton6.setBounds(120, 30, 70, 23);
+        jButton6.setBounds(180, 520, 70, 23);
 
         jButton7.setText("<");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton7);
         jButton7.setBounds(403, 330, 50, 23);
 
@@ -226,7 +287,24 @@ public class Try extends javax.swing.JFrame {
         jPanel2.add(jButton8);
         jButton8.setBounds(400, 430, 50, 23);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\main.png")); // NOI18N
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
+        jRadioButton1.setText("Kiri");
+        jPanel2.add(jRadioButton1);
+        jRadioButton1.setBounds(110, 550, 90, 23);
+
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Kanan");
+        jPanel2.add(jRadioButton2);
+        jRadioButton2.setBounds(220, 550, 90, 23);
+        jPanel2.add(jLabel3);
+        jLabel3.setBounds(440, 190, 260, 90);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kania.png"))); // NOI18N
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(450, 330, 140, 120);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main.png"))); // NOI18N
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 800, 600);
 
@@ -275,13 +353,13 @@ public class Try extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jPanel2.setVisible(false);
-        jPanel1.setVisible(true);        // TODO add your handling code here:
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        jPanel2.setVisible(true);
-        jPanel1.setVisible(false);
+        jPanel1.setVisible(true);
+        jPanel2.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -295,7 +373,47 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        String dir = System.getProperty("user.dir");
+        jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png"));
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        String dir = System.getProperty("user.dir");
+        chooser1.setCurrentDirectory(new File(dir));
+        int ret = chooser1.showOpenDialog(this);
+        if(ret == JFileChooser.APPROVE_OPTION){
+        File f = chooser1.getSelectedFile();
+        jTextField40.setText(f.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        String dir = System.getProperty("user.dir");
+        chooser2.setCurrentDirectory(new File(dir));
+        int ret = chooser2.showOpenDialog(this);
+        if(ret == JFileChooser.APPROVE_OPTION){
+        File f = chooser2.getSelectedFile();
+        jTextField41.setText(f.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        String dir = System.getProperty("user.dir");
+        System.out.println(dir);
+        jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png"));
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -309,7 +427,10 @@ public class Try extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -317,10 +438,15 @@ public class Try extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -355,6 +481,8 @@ public class Try extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField38;
     private javax.swing.JTextField jTextField39;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField40;
+    private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
