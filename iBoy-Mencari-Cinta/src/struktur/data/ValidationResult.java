@@ -20,7 +20,7 @@ public class ValidationResult {
 
     public static ValidationResult CreateValidationResult(int type, IBoy iboyClone, int d, int h) {
         ValidationResult val = new ValidationResult();
-        val.type = ValidationResult.INVALID_GIRL;
+        val.type = type;
         val.iboy = iboyClone;
         val.d = d;
         val.h = h;

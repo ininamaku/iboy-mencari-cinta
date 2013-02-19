@@ -64,7 +64,7 @@ public class IBoyMencariCinta {
      * Belum di tes
      */
     public ValidationResult validateJadwal(Jadwal jadwal) {
-        ValidationResult val = new ValidationResult();
+        ValidationResult val;
         IBoy iboyClone = iboy.clone();
         String currentActivity = new String();
         for (int i = 0; i < jadwal.getJumlahMinggu() * 7; i++) {
@@ -396,7 +396,7 @@ public class IBoyMencariCinta {
         IBoyMencariCinta ibot = new IBoyMencariCinta();
         ibot.Parser(); // read input & parse
         ibot.printIboy();
-        /*
+        
         ibot.initialize(ibot.jumlahminggu);
 
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
@@ -416,7 +416,8 @@ public class IBoyMencariCinta {
             System.out.print("POPULASI ke-" + i);
             ibot.jadwalIboy.get(i).printJadwal();
             System.out.println("Validate jadwal : " + ibot.validateJadwal(ibot.jadwalIboy.get(i)).type);
-        }*/
+        } 
+        
         /*
         /* call genetic algo */
 
