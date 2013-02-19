@@ -47,6 +47,12 @@ public class IBoyMencariCinta {
         return -1;
     }
     
+    private void ReStock() {
+        for(int i = 0; i <listOfBarang.size(); i++) {
+            Barang barang = listOfBarang.get(i);
+            barang.resetbarang();
+        }
+    }
     /*
      * Belum di tes
      */
@@ -76,6 +82,7 @@ public class IBoyMencariCinta {
                     }   
                 }
             }
+            ReStock();
             iboyClone.nextDay();
         }
         return -1;
