@@ -228,9 +228,13 @@ public class IBoyMencariCinta {
         iboy.printData();
     }
     
+    public String printIboy2(){
+        return iboy.printData2();
+    }
     /**
      * @param args the command line arguments
      */
+    /*
     public static void main(String[] args){
         IBoyMencariCinta ibot = new IBoyMencariCinta();
         ibot.Parser(); // read input & parse
@@ -240,9 +244,9 @@ public class IBoyMencariCinta {
             System.out.print("POPULASI ke-" + i);
             ibot.jadwalIboy.get(i).printJadwal();        
         }
-        
+        /*
         /* call genetic algo */
         
         /* the result print to output file */
-    }
+    /*}*/
 }
