@@ -289,6 +289,10 @@ public class IBoyMencariCinta {
             ibot.jadwalIboy.get(i).printJadwal();        
             System.out.println("Validate jadwal : "+ ibot.validateJadwal(ibot.jadwalIboy.get(i))); 
         }
+       
+        for (int i=0; i<ibot.jadwalIboy.size(); i++) {
+            System.out.println(ibot.jadwalIboy.get(i));        
+        }
         
         /*
         /* call genetic algo */

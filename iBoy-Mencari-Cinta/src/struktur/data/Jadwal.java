@@ -47,4 +47,15 @@ public class Jadwal {
             System.out.println("");
         }
     }
+    
+    @Override
+    public String toString(){
+       String result = "";
+       for (int i = 0; i<day.length; i++) {
+            for (int j=0; j<10; j++) {
+                result+=day[i].hour[j];
+            }
+        }
+       return result;
+    }
 }
