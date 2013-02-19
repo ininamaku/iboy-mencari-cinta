@@ -352,7 +352,7 @@ public class IBoyMencariCinta {
                 case ValidationResult.INVALID_GIRL:
                     s = jadwal.getDayHour(valres.d, valres.h);
                     idx = isKandidat(s);
-                    id = idx + 1;
+                    id = (idx + 1) % listOfKandidat.size();
                     while (id != idx) {
                         jadwal.setDayHour(valres.d, valres.h, listOfKandidat.get(id).getKandidat_id());
                         if (validateJadwal(jadwal).type == ValidationResult.VALIDATION_OK) {
@@ -367,7 +367,7 @@ public class IBoyMencariCinta {
                 case ValidationResult.INVALID_GIFT:
                     s = jadwal.getDayHour(valres.d, valres.h);
                     idx = isBarang(s);
-                    id = idx + 1;
+                    id = (idx + 1) % listOfBarang.size();
                     while (id != idx) {
                         jadwal.setDayHour(valres.d, valres.h, listOfBarang.get(id).getKode());
                         if (validateJadwal(jadwal).type == ValidationResult.VALIDATION_OK) {
