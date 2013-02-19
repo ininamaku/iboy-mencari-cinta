@@ -171,15 +171,14 @@ public class IBoyMencariCinta {
         }
     }
 
-    public void Parser() {
+    public void parseInput(String origin) {
         iboy = new IBoy();
         listOfBarang = new Vector<Barang>();
         listOfKandidat = new Vector<Kandidat>();
-        jadwalKandidat = new Vector<Jadwal>();
 
         try {
             StringBuilder text = new StringBuilder();
-            Scanner scanner = new Scanner(new FileInputStream("input.txt"));
+            Scanner scanner = new Scanner(new FileInputStream(origin));
             try {
                 while (scanner.hasNextLine()) {
                     text.append(scanner.nextLine()).append("\n");
@@ -218,11 +217,14 @@ public class IBoyMencariCinta {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
+    }
+    
+    public void parseJadwal(String origin) {
+        jadwalKandidat = new Vector<Jadwal>();
+    
         try {
             StringBuilder text = new StringBuilder();
-            Scanner scanner = new Scanner(new FileInputStream("jadwal.txt"));
+            Scanner scanner = new Scanner(new FileInputStream(origin));
             try {
                 while (scanner.hasNextLine()) {
                     text.append(scanner.nextLine()).append("\n");
@@ -251,7 +253,7 @@ public class IBoyMencariCinta {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+}
 
     public void selection() {
         int[] en = new int[4];
@@ -394,7 +396,8 @@ public class IBoyMencariCinta {
      */
     public static void main(String[] args) {
         IBoyMencariCinta ibot = new IBoyMencariCinta();
-        ibot.Parser(); // read input & parse
+        ibot.parseInput("input.txt"); // read input & parse
+        ibot.parseJadwal("jadwal.txt"); // read input & parse
         ibot.printIboy();
         
         ibot.initialize(ibot.jumlahminggu);
