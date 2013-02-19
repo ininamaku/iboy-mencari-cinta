@@ -110,8 +110,13 @@ public class IBoyMencariCinta {
     public void initialize (int jumlahMinggu) {
         jadwalIboy = new Vector<Jadwal>();
         for (int i=0; i<4; i++) { //jumlah populasi
+            //System.out.println("Populasi ke- " + i);
+            
             Jadwal tempJadwal = new Jadwal(jumlahMinggu);
+            
             for (int j=0; j<jumlahMinggu*7; j++) { //day ke berapa
+                //System.out.println("Day-" + j);
+                
                 for (int k=0; k<10; k++) { //jam ke berapa
                     int hasilRandom = random(listOfBarang.size() + listOfKandidat.size());
                     String tempID = new String();
@@ -120,6 +125,7 @@ public class IBoyMencariCinta {
                     }
                     else {
                         tempID = listOfKandidat.get(hasilRandom-listOfBarang.size()).getKandidat_id();
+                        //System.out.println("Yeah : " + jadwalKandidat.get(hasilRandom-listOfBarang.size()).getDayHour(j, k));
                         if (jadwalKandidat.get(hasilRandom-listOfBarang.size()).getDayHour(j, k).compareTo("0") == 0) {
                             tempID = "0";
                         }
@@ -218,20 +224,25 @@ public class IBoyMencariCinta {
         }
     }
    
-    
+    public void printIboy(){
+        iboy.printData();
+    }
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args){
         IBoyMencariCinta ibot = new IBoyMencariCinta();
-        ibot.Parser();
-         /* Construct iboy dll here */
-
-        /* read input */
-            
+        ibot.Parser(); // read input & parse
+        ibot.printIboy();
+        ibot.initialize(ibot.jumlahminggu);
+        for (int i=0; i<ibot.jadwalIboy.size(); i++) {
+            System.out.print("POPULASI ke-" + i);
+            ibot.jadwalIboy.get(i).printJadwal();        
+        }
+        
         /* call genetic algo */
-
+        
         /* the result print to output file */
     }
 }
