@@ -41,6 +41,30 @@ public class IBoy {
         ib.listOfBarang = new Vector<String>(listOfBarang);
         return ib;
     }
+
+    public int getEnergy() {
+        return energy;
+    }
+
+    public int getEnlightment() {
+        return enlightment;
+    }
+
+    public List<String> getListOfBarang() {
+        return listOfBarang;
+    }
+
+    public int getMaxEnergy() {
+        return maxEnergy;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public int getMoneyPerDay() {
+        return moneyPerDay;
+    }
     
     public void setMoney(int money) {
         this.money = money;
@@ -119,4 +143,12 @@ public class IBoy {
         money += moneyPerDay;
     }
 
+    public void printData() {
+        System.out.println("Energy      : " + getEnergy());
+        System.out.println("Enlightment : " + getEnlightment());
+        System.out.println("Max Energy  : " + getMaxEnergy());
+        System.out.println("Money       : " + getMoney());
+        System.out.println("Money/day   : " + getMoneyPerDay());
+        //System.out.println("Gift List   :" + getListOfBarang());
+    }
 }

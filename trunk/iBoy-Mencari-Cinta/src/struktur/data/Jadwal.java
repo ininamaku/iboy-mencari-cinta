@@ -5,9 +5,10 @@ public class Jadwal {
     int jumlahMinggu; 
     
     public Jadwal (int jumlahMinggu_) {
-        day = new Day[7*jumlahMinggu_];
         jumlahMinggu = jumlahMinggu_;
-        for (int i=0; i<7*jumlahMinggu_; i++) {
+        
+        day = new Day[7*jumlahMinggu];
+        for (int i=0; i<7*jumlahMinggu; i++) {
             day[i] = new Day();
         }
     }
