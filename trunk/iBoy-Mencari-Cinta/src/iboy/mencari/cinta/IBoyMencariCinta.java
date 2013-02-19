@@ -1,4 +1,3 @@
-
 package iboy.mencari.cinta;
 
 import java.util.List;
@@ -7,29 +6,27 @@ import struktur.data.*;
 import java.util.Random;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class IBoyMencariCinta {
-    List<Jadwal> jadwalIboy; 
+
+    List<Jadwal> jadwalIboy;
     List<Barang> listOfBarang;      //0..N
     List<Kandidat> listOfKandidat;  //N+1..Max
     List<Jadwal> jadwalKandidat;
-    IBoy iboy; 
+    IBoy iboy;
     int jumlahminggu;
     int jumlahKandidat;
-    
-    private int random (int maxIndex) {
+
+    private int random(int maxIndex) {
         Random R = new Random();
         return R.nextInt(maxIndex);
     }
-    
-    private int isBarang (String id) {
-        for (int i=0; i<listOfBarang.size(); i++) {
+
+    private int isBarang(String id) {
+        for (int i = 0; i < listOfBarang.size(); i++) {
             if (id.compareTo(listOfBarang.get(i).getKode()) == 0) {
                 //System.out.println("ID Barang yang dicek : " + listOfBarang.get(i).getKode());
                 return i;
@@ -37,40 +34,41 @@ public class IBoyMencariCinta {
         }
         return -1;
     }
-    
-    private int isKandidat (String id) {
-        for (int i=0; i<listOfKandidat.size(); i++) {
+
+    private int isKandidat(String id) {
+        for (int i = 0; i < listOfKandidat.size(); i++) {
             if (id.compareTo(listOfKandidat.get(i).getKandidat_id()) == 0) {
-               // System.out.println("ID Kandidat yang dicek : " + listOfKandidat.get(i).getKandidat_id() );
+                // System.out.println("ID Kandidat yang dicek : " + listOfKandidat.get(i).getKandidat_id() );
                 return i;
-                
+
             }
         }
         return -1;
     }
-    
+
     private void ReStock() {
-        for(int i = 0; i <listOfBarang.size(); i++) {
+        for (int i = 0; i < listOfBarang.size(); i++) {
             Barang barang = listOfBarang.get(i);
             barang.resetbarang();
         }
     }
-    
-    private void ResetJamKandidat () {
-        for (int i=0; i<listOfKandidat.size(); i++) {
+
+    private void ResetJamKandidat() {
+        for (int i = 0; i < listOfKandidat.size(); i++) {
             Kandidat k = listOfKandidat.get(i);
             k.resetjam();
         }
     }
-    
+
     /*
      * Belum di tes
      */
-    public int validateJadwal (Jadwal jadwal) {
+    public ValidationResult validateJadwal(Jadwal jadwal) {
+        ValidationResult val = new ValidationResult();
         IBoy iboyClone = iboy.clone();
-        String currentActivity = new String(); 
-        for (int i=0; i<jadwal.getJumlahMinggu() * 7; i++) {
-            for (int j=0; j<10; j++) {
+        String currentActivity = new String();
+        for (int i = 0; i < jadwal.getJumlahMinggu() * 7; i++) {
+            for (int j = 0; j < 10; j++) {
                 //System.out.println("Energi iboy : " + iboyClone.getEnergy());
                 currentActivity = jadwal.getDayHour(i, j);
                 int barangIdx = isBarang(currentActivity);
@@ -78,46 +76,43 @@ public class IBoyMencariCinta {
                 if (kandidatIdx != -1) {
                     //System.out.println("Cek kandidat");
                     if (jadwalKandidat.get(kandidatIdx).getDayHour(i, j).compareTo("0") == 0) {
-                        //System.out.println("jadwal tidak ada");
-                        return i;
+                        val = ValidationResult.CreateValidationResult(ValidationResult.INVALID_GIRL, iboyClone, i, j);
+                        return val;
                     }
-                    
-                    if (! iboyClone.bisaDikencani(listOfKandidat.get(kandidatIdx))) {
-                       // System.out.println("iboy capek");
-                        return i; 
-                    }
-                    else {
+
+                    if (!iboyClone.bisaDikencani(listOfKandidat.get(kandidatIdx))) {
+                        val = ValidationResult.CreateValidationResult(ValidationResult.INVALID_GIRL, iboyClone, i, j);
+                        return val;
+                    } else {
                         //System.out.println("lagi kencan niye");
                         iboyClone.Kencani(listOfKandidat.get(kandidatIdx));
                     }
-                }
-                else
-                if (barangIdx != -1) {
+                } else if (barangIdx != -1) {
                     //System.out.println("cek barang");
-                    if (! iboyClone.beliBarang(listOfBarang.get(barangIdx))) {
-                       // System.out.println("iboy bokek");
-                        return i; 
-                    }   
+                    if (!iboyClone.beliBarang(listOfBarang.get(barangIdx))) {
+                        val = ValidationResult.CreateValidationResult(ValidationResult.INVALID_GIFT, iboyClone, i, j);
+                        return val;
+                    }
                 }
             }
             ResetJamKandidat();
             ReStock();
             iboyClone.nextDay();
         }
-        return -1;
+        val = ValidationResult.CreateValidationResult(ValidationResult.VALIDATION_OK, iboyClone, 0, 0);
+        return val;
     }
-    
+
     /*
      * Fitness function \m/
      * method countEnlightment dipakai jika jadwal valid
      */
-    public int countEnlightment (Jadwal jadwal) {
-        IBoy iboyClone = iboy.clone();
+    public int countEnlightment(Jadwal jadwal) {
         String currentActivity = new String();
-        int enlightment = 0; 
-        
-        for (int i=0; i<jadwal.getJumlahMinggu() * 7; i++) {
-            for (int j=0; j<10; j++) {
+        int enlightment = 0;
+
+        for (int i = 0; i < jadwal.getJumlahMinggu() * 7; i++) {
+            for (int j = 0; j < 10; j++) {
                 currentActivity = jadwal.getDayHour(i, j);
                 int kandidatIdx = isKandidat(currentActivity);
                 if (kandidatIdx != -1) {
@@ -127,21 +122,20 @@ public class IBoyMencariCinta {
         }
         return enlightment;
     }
-    
-    
+
     /*
      * Belum di tes
      */
-    public void initialize (int jumlahMinggu) {
+    public void initialize(int jumlahMinggu) {
         jadwalIboy = new Vector<Jadwal>();
-        for (int i=0; i<4; i++) { //jumlah populasi
+        for (int i = 0; i < 4; i++) { //jumlah populasi
             //System.out.println("Populasi ke- " + i);
             IBoy iboyClone = iboy.clone();
             Jadwal tempJadwal = new Jadwal(jumlahMinggu);
-            
-            for (int j=0; j<jumlahMinggu*7; j++) { //day ke berapa
+
+            for (int j = 0; j < jumlahMinggu * 7; j++) { //day ke berapa
                 //System.out.println("Day-" + j);
-                for (int k=0; k<10; k++) { //jam ke berapa
+                for (int k = 0; k < 10; k++) { //jam ke berapa
                     int hasilRandom = random(listOfBarang.size() + listOfKandidat.size());
                     String tempID = new String();
                     if (hasilRandom < listOfBarang.size()) {
@@ -150,43 +144,40 @@ public class IBoyMencariCinta {
                         } else {
                             tempID = listOfBarang.get(hasilRandom).getKode();
                         }
-                    }
-                    else {
-                        Kandidat tempKandidat = listOfKandidat.get(hasilRandom-listOfBarang.size());
+                    } else {
+                        Kandidat tempKandidat = listOfKandidat.get(hasilRandom - listOfBarang.size());
                         tempID = tempKandidat.getKandidat_id();
-                        if (jadwalKandidat.get(hasilRandom-listOfBarang.size()).getDayHour(j, k).compareTo("0") == 0) {
+                        if (jadwalKandidat.get(hasilRandom - listOfBarang.size()).getDayHour(j, k).compareTo("0") == 0) {
                             tempID = "0"; //kandidat sibuk
-                        }
-                        else {
+                        } else {
                             if (iboyClone.bisaDikencani(tempKandidat)) {
                                 tempID = tempKandidat.getKandidat_id();
                                 iboyClone.Kencani(tempKandidat);
-                            }
-                            else {
+                            } else {
                                 tempID = "0";
                             }
                         }
                     }
-                    
-                    tempJadwal.setDayHour(j,k,tempID);                
+
+                    tempJadwal.setDayHour(j, k, tempID);
                 }
-                
+
                 ResetJamKandidat();
                 ReStock();
                 iboyClone.nextDay();
             }
-            
+
             jadwalIboy.add(tempJadwal);
         }
     }
-	
-    public void Parser(){
-       iboy = new IBoy();
-       listOfBarang = new Vector<Barang>();  
-       listOfKandidat = new Vector<Kandidat>();
-       jadwalKandidat = new Vector<Jadwal>();
-       
-       try {
+
+    public void Parser() {
+        iboy = new IBoy();
+        listOfBarang = new Vector<Barang>();
+        listOfKandidat = new Vector<Kandidat>();
+        jadwalKandidat = new Vector<Jadwal>();
+
+        try {
             StringBuilder text = new StringBuilder();
             Scanner scanner = new Scanner(new FileInputStream("input.txt"));
             try {
@@ -204,35 +195,32 @@ public class IBoyMencariCinta {
             jumlahminggu = new Integer(Integer.parseInt(firstLineSplit[2]));
             iboy.SetEnergy(Integer.parseInt(firstLineSplit[3]));
             jumlahKandidat = new Integer(Integer.parseInt(line[1]));
-            for (int i=0;i<jumlahKandidat; i++){
-                String lineSplit[] = line[2+i].split(" ");
-                Kandidat kandidat = new Kandidat(new Integer(i+1).toString(),Integer.parseInt(lineSplit[0]),Integer.parseInt(lineSplit[1]),Integer.parseInt(lineSplit[2]));
-                if (lineSplit[3].equals("-")){
-                    for(int j=1;j<lineSplit[3].length();j++){
-                        kandidat.addPrereq(lineSplit[3].substring(j-1,j));
+            for (int i = 0; i < jumlahKandidat; i++) {
+                String lineSplit[] = line[2 + i].split(" ");
+                Kandidat kandidat = new Kandidat(new Integer(i + 1).toString(), Integer.parseInt(lineSplit[0]), Integer.parseInt(lineSplit[1]), Integer.parseInt(lineSplit[2]));
+                if (lineSplit[3].equals("-")) {
+                    for (int j = 1; j < lineSplit[3].length(); j++) {
+                        kandidat.addPrereq(lineSplit[3].substring(j - 1, j));
                     }
                 }
-                listOfKandidat.add(kandidat);  
-            }    
-            int jumlahBarang = new Integer(Integer.parseInt(line[jumlahKandidat+2]));
-            for (int i=0;i<jumlahBarang; i++){
-                String lineSplit[] = line[jumlahKandidat+3+i].split(" ");
+                listOfKandidat.add(kandidat);
+            }
+            int jumlahBarang = new Integer(Integer.parseInt(line[jumlahKandidat + 2]));
+            for (int i = 0; i < jumlahBarang; i++) {
+                String lineSplit[] = line[jumlahKandidat + 3 + i].split(" ");
                 Barang barang = new Barang();
                 barang.setKode(lineSplit[0]);
-                
+
                 barang.setHarga(Integer.parseInt(lineSplit[1]));
                 barang.setRestock(Integer.parseInt(lineSplit[2]));
                 listOfBarang.add(barang);
-                }
             }
-   
-       
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
-       try {
+
+
+        try {
             StringBuilder text = new StringBuilder();
             Scanner scanner = new Scanner(new FileInputStream("jadwal.txt"));
             try {
@@ -246,88 +234,84 @@ public class IBoyMencariCinta {
             String kandidat[] = n.split("[\n]");
             int hari;
             int jam;
-            for (int i=0;i<jumlahKandidat;i++){
-                hari=0;jam=0;
-                Jadwal jadwalKand = new Jadwal (jumlahminggu);
-                for(int j=1;j<kandidat[i].length();j++){
-                    jadwalKand.setDayHour(hari,jam, kandidat[i].substring(j-1,j));
+            for (int i = 0; i < jumlahKandidat; i++) {
+                hari = 0;
+                jam = 0;
+                Jadwal jadwalKand = new Jadwal(jumlahminggu);
+                for (int j = 1; j < kandidat[i].length(); j++) {
+                    jadwalKand.setDayHour(hari, jam, kandidat[i].substring(j - 1, j));
                     jam++;
-                    if (jam>9){
+                    if (jam > 9) {
                         hari++;
-                        jam=0;
+                        jam = 0;
                     }
                 }
                 jadwalKandidat.add(jadwalKand);
             }
-        }
-   
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void selection () {
+
+    public void selection() {
         int[] en = new int[4];
         int index = 0;
         int minEn = 99999;
         int minIdx = 0;
         int[] crossIdx = new int[4];
-        
+
         //for each populasi jadwal, hitung enlightment & hitung englightment terkecil
-        for (int i=0; i<4; i++) {
-            en[i] = countEnlightment (jadwalIboy.get(i));
+        for (int i = 0; i < 4; i++) {
+            en[i] = countEnlightment(jadwalIboy.get(i));
             //System.out.println("en - "+i+" = " + en[i]);
             if (en[i] < minEn) {
                 minIdx = i;
                 minEn = en[i];
             }
         }
-        
+
         //cari index untuk crossOver
         int temp = 0;
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             if (i != minIdx) {
-                if ( (i+1 != minIdx) && (i+1 < 4) ) {
+                if ((i + 1 != minIdx) && (i + 1 < 4)) {
                     crossIdx[temp] = i;
                     temp++;
-                    crossIdx[temp] = i+1;
+                    crossIdx[temp] = i + 1;
                     temp++;
-                }
-                else 
-                if ( (i+2 != minIdx) && (i+2 < 4) ) {
+                } else if ((i + 2 != minIdx) && (i + 2 < 4)) {
                     crossIdx[temp] = i;
                     temp++;
-                    crossIdx[temp] = i+2;
+                    crossIdx[temp] = i + 2;
                     temp++;
                 }
             }
         }
-        
+
         //crossOver Jadwal crossIdx[0] & Jadwal crossIdx[1]
-        List<Jadwal> crossedJadwalA = CrossOver(jadwalIboy.get(crossIdx[0]), jadwalIboy.get(crossIdx[1]) );
+        List<Jadwal> crossedJadwalA = CrossOver(jadwalIboy.get(crossIdx[0]), jadwalIboy.get(crossIdx[1]));
         //crossOver Jadwal crossIdx[2] & Jadwal crossIdx[3]
-        List<Jadwal> crossedJadwalB = CrossOver(jadwalIboy.get(crossIdx[2]), jadwalIboy.get(crossIdx[3]) );
-        
+        List<Jadwal> crossedJadwalB = CrossOver(jadwalIboy.get(crossIdx[2]), jadwalIboy.get(crossIdx[3]));
+
         jadwalIboy.clear();
         jadwalIboy.addAll(crossedJadwalA);
         jadwalIboy.addAll(crossedJadwalB);
         //System.out.println("minEn = " + minEn + " minIdx = " + minIdx);
     }
-    
+
     public List<Jadwal> CrossOver(Jadwal jadwalA, Jadwal jadwalB) {
         int crossIndex = random(jumlahminggu * 7 * 10);
         List<Jadwal> crossedJadwal = new Vector<Jadwal>();
         Jadwal jadwalA_ = new Jadwal(jumlahminggu);
         Jadwal jadwalB_ = new Jadwal(jumlahminggu);
-        for (int day=0; day<jumlahminggu*7; day++) {
-            for (int hour=0; hour<10; hour++) {
-                if (crossIndex > (day*10+hour)) {
+        for (int day = 0; day < jumlahminggu * 7; day++) {
+            for (int hour = 0; hour < 10; hour++) {
+                if (crossIndex > (day * 10 + hour)) {
                     jadwalA_.setDayHour(day, hour, jadwalA.getDayHour(day, hour));
                     jadwalB_.setDayHour(day, hour, jadwalB.getDayHour(day, hour));
                     //System.out.println("crossIndex = " + crossIndex);
                     //System.out.println("day & hour = " + day + " " + hour);
-                }
-                else {
+                } else {
                     jadwalB_.setDayHour(day, hour, jadwalA.getDayHour(day, hour));
                     jadwalA_.setDayHour(day, hour, jadwalB.getDayHour(day, hour));
                 }
@@ -335,7 +319,7 @@ public class IBoyMencariCinta {
         }
         crossedJadwal.add(jadwalA_);
         crossedJadwal.add(jadwalB_);
-        
+
         /*
         System.out.println("Before : ");
         jadwalA.printJadwal();
@@ -348,42 +332,94 @@ public class IBoyMencariCinta {
         System.out.println("-------------");
         jadwalB_.printJadwal();
         System.out.println("Validate B : " + validateJadwal(jadwalB_));
-        */
+         */
         return crossedJadwal;
     }
-    
-    public void printIboy(){
+
+    public void Mutation() {
+        String s;
+        int idx;
+        int id;
+        for (int i = 0; i < jadwalIboy.size(); i++) {
+            Jadwal jadwal = jadwalIboy.get(i);
+            ValidationResult valres = validateJadwal(jadwalIboy.get(i));
+            switch (valres.type) {
+                case ValidationResult.VALIDATION_OK:
+
+                    break;
+                case ValidationResult.INVALID_GIRL:
+                    s = jadwal.getDayHour(valres.d, valres.h);
+                    idx = isKandidat(s);
+                    id = idx + 1;
+                    while (id != idx) {
+                        jadwal.setDayHour(valres.d, valres.h, listOfKandidat.get(id).getKandidat_id());
+                        if (validateJadwal(jadwal).type == ValidationResult.VALIDATION_OK) {
+                            break;
+                        }
+                        id = (id + 1) % listOfKandidat.size();
+                    }
+                    if (id == idx) {
+                        jadwal.setDayHour(valres.d, valres.h, "0");
+                    }
+                    break;
+                case ValidationResult.INVALID_GIFT:
+                    s = jadwal.getDayHour(valres.d, valres.h);
+                    idx = isBarang(s);
+                    id = idx + 1;
+                    while (id != idx) {
+                        jadwal.setDayHour(valres.d, valres.h, listOfBarang.get(id).getKode());
+                        if (validateJadwal(jadwal).type == ValidationResult.VALIDATION_OK) {
+                            break;
+                        }
+                        id = (id + 1) % listOfBarang.size();
+                    }
+                    if (id == idx) {
+                        jadwal.setDayHour(valres.d, valres.h, "0");
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void printIboy() {
         iboy.printData();
     }
-    
-    public String printIboy2(){
+
+    public String printIboy2() {
         return iboy.printData2();
     }
+
     /**
      * @param args the command line arguments
      */
-    
-    public static void main(String[] args){
+    public static void main(String[] args) {
         IBoyMencariCinta ibot = new IBoyMencariCinta();
         ibot.Parser(); // read input & parse
         ibot.printIboy();
-        
+        /*
         ibot.initialize(ibot.jumlahminggu);
-        
-        for (int i=0; i<ibot.jadwalIboy.size(); i++) {
+
+        for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
             System.out.print("POPULASI ke-" + i);
-            ibot.jadwalIboy.get(i).printJadwal();        
-            System.out.println("Validate jadwal : "+ ibot.validateJadwal(ibot.jadwalIboy.get(i))); 
+            ibot.jadwalIboy.get(i).printJadwal();
+            System.out.println("Validate jadwal : " + ibot.validateJadwal(ibot.jadwalIboy.get(i)).type);
         }
-       
-        for (int i=0; i<ibot.jadwalIboy.size(); i++) {
-            System.out.println(ibot.jadwalIboy.get(i));        
+
+        for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
+            System.out.println(ibot.jadwalIboy.get(i));
         }
-        
+
         ibot.selection();
+        ibot.Mutation();
+
+        for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
+            System.out.print("POPULASI ke-" + i);
+            ibot.jadwalIboy.get(i).printJadwal();
+            System.out.println("Validate jadwal : " + ibot.validateJadwal(ibot.jadwalIboy.get(i)).type);
+        }*/
         /*
         /* call genetic algo */
-        
+
         /* the result print to output file */
     }
 }
