@@ -1,10 +1,8 @@
 1. GUI			-> Kenny & Arie
 2. Fungsi dasar : 
-	b. Initialize -> random tp sesuai dg jadwal : Sharon  
 	c. Selection & Cross over : Arie & Mamon
 	d. Mutasi : Ahmad
 
-3. Parser input output -> Mamon
 
 Log
 	Ahmad Fauzan
@@ -18,10 +16,10 @@ Log
 		- class Barang
 		
 	Kania Azrina
-		-
+		- GUI
 		
 	Martha Monica
-		-
+		- Parser
 		
 	Sharon Loh
 		- class Day
