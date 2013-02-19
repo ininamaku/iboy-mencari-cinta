@@ -151,4 +151,14 @@ public class IBoy {
         System.out.println("Money/day   : " + getMoneyPerDay());
         //System.out.println("Gift List   :" + getListOfBarang());
     }
+    
+    public String printData2() {
+        return "Energy      : " + getEnergy() + "\n" +
+                "Enlightment : " + getEnlightment() + "\n" +
+                "Max Energy  : " + getMaxEnergy() + "\n" +
+                "Money       : " + getMoney()+ "\n" +
+                "Money/day   : " + getMoneyPerDay();
+        
+        //System.out.println("Gift List   :" + getListOfBarang());
+    }
 }
