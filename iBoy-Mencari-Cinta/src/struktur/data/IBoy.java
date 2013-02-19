@@ -132,6 +132,10 @@ public class IBoy {
         energy -= kandidat.getEnergi();
         enlightment = kandidat.getEnlightenment();
         kandidat.setSisajam(kandidat.getSisajam()-1);
+        List<String> s = kandidat.getPrereq();
+        for(int i =0; i< s.size(); i++) {
+            listOfBarang.remove(s.get(i));
+        }
     }
 
     public boolean gakKuat() {
