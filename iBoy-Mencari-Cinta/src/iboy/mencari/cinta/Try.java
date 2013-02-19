@@ -20,8 +20,8 @@ public class Try extends javax.swing.JFrame {
     /** Creates new form Try */
     public Try() {
         initComponents();
-        jPanel1.setVisible(true);
-        jPanel2.setVisible(false);
+        jPanel1.setVisible(false);
+        jPanel2.setVisible(true);
         
     }
 
@@ -34,10 +34,55 @@ public class Try extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jTextField34 = new javax.swing.JTextField();
+        jTextField35 = new javax.swing.JTextField();
+        jTextField36 = new javax.swing.JTextField();
+        jTextField37 = new javax.swing.JTextField();
+        jTextField38 = new javax.swing.JTextField();
+        jTextField39 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
+        jTextField8 = new javax.swing.JTextField();
+        jTextField9 = new javax.swing.JTextField();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField11 = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jTextField14 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jTextField18 = new javax.swing.JTextField();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField20 = new javax.swing.JTextField();
+        jTextField21 = new javax.swing.JTextField();
+        jTextField22 = new javax.swing.JTextField();
+        jTextField23 = new javax.swing.JTextField();
+        jTextField24 = new javax.swing.JTextField();
+        jTextField25 = new javax.swing.JTextField();
+        jTextField26 = new javax.swing.JTextField();
+        jTextField27 = new javax.swing.JTextField();
+        jTextField28 = new javax.swing.JTextField();
+        jTextField29 = new javax.swing.JTextField();
+        jTextField30 = new javax.swing.JTextField();
+        jTextField31 = new javax.swing.JTextField();
+        jTextField32 = new javax.swing.JTextField();
+        jTextField33 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
@@ -46,41 +91,144 @@ public class Try extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setPreferredSize(new java.awt.Dimension(800, 700));
 
-        jPanel2.setAlignmentX(0.0F);
-        jPanel2.setAlignmentY(0.0F);
-        jPanel2.setPreferredSize(new java.awt.Dimension(800, 600));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main.png"))); // NOI18N
-
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabel2)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabel2)
-        );
-
         jPanel1.setAlignmentX(0.0F);
         jPanel1.setAlignmentY(0.0F);
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
+        jPanel1.setLayout(null);
+        jPanel1.add(jTextField34);
+        jTextField34.setBounds(580, 220, 80, 20);
+        jPanel1.add(jTextField35);
+        jTextField35.setBounds(580, 250, 80, 20);
+        jPanel1.add(jTextField36);
+        jTextField36.setBounds(580, 290, 80, 20);
+        jPanel1.add(jTextField37);
+        jTextField37.setBounds(580, 320, 80, 20);
+        jPanel1.add(jTextField38);
+        jTextField38.setBounds(580, 360, 80, 20);
+        jPanel1.add(jTextField39);
+        jTextField39.setBounds(580, 400, 80, 20);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tuts.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\tuts.png")); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(800, 620));
         jLabel1.setMinimumSize(new java.awt.Dimension(800, 620));
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 0, 800, 600);
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-        );
+        jPanel2.setAlignmentX(0.0F);
+        jPanel2.setAlignmentY(0.0F);
+        jPanel2.setPreferredSize(new java.awt.Dimension(800, 600));
+        jPanel2.setLayout(null);
+        jPanel2.add(jTextField1);
+        jTextField1.setBounds(460, 100, 40, 20);
+        jPanel2.add(jTextField2);
+        jTextField2.setBounds(540, 100, 90, 20);
+        jPanel2.add(jTextField3);
+        jTextField3.setBounds(680, 100, 50, 20);
+        jPanel2.add(jTextField4);
+        jTextField4.setBounds(460, 150, 50, 20);
+        jPanel2.add(jTextField5);
+        jTextField5.setBounds(640, 150, 90, 20);
+        jPanel2.add(jTextField6);
+        jTextField6.setBounds(590, 340, 120, 20);
+        jPanel2.add(jTextField7);
+        jTextField7.setBounds(590, 400, 120, 20);
+        jPanel2.add(jTextField8);
+        jTextField8.setBounds(590, 450, 120, 20);
+        jPanel2.add(jTextField9);
+        jTextField9.setBounds(550, 510, 40, 30);
+        jPanel2.add(jTextField10);
+        jTextField10.setBounds(160, 80, 50, 20);
+        jPanel2.add(jTextField11);
+        jTextField11.setBounds(220, 80, 50, 20);
+        jPanel2.add(jTextField12);
+        jTextField12.setBounds(280, 80, 50, 20);
+        jPanel2.add(jTextField13);
+        jTextField13.setBounds(340, 80, 50, 20);
+        jPanel2.add(jTextField14);
+        jTextField14.setBounds(160, 120, 50, 20);
+        jPanel2.add(jTextField15);
+        jTextField15.setBounds(220, 120, 50, 20);
+        jPanel2.add(jTextField16);
+        jTextField16.setBounds(280, 120, 50, 20);
+        jPanel2.add(jTextField17);
+        jTextField17.setBounds(340, 120, 50, 20);
+        jPanel2.add(jTextField18);
+        jTextField18.setBounds(160, 170, 50, 20);
+        jPanel2.add(jTextField19);
+        jTextField19.setBounds(220, 170, 50, 20);
+        jPanel2.add(jTextField20);
+        jTextField20.setBounds(280, 170, 50, 20);
+        jPanel2.add(jTextField21);
+        jTextField21.setBounds(340, 170, 50, 20);
+
+        jTextField22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField22ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField22);
+        jTextField22.setBounds(160, 220, 50, 20);
+        jPanel2.add(jTextField23);
+        jTextField23.setBounds(220, 220, 50, 20);
+        jPanel2.add(jTextField24);
+        jTextField24.setBounds(280, 220, 50, 20);
+        jPanel2.add(jTextField25);
+        jTextField25.setBounds(340, 220, 50, 20);
+        jPanel2.add(jTextField26);
+        jTextField26.setBounds(160, 280, 50, 20);
+        jPanel2.add(jTextField27);
+        jTextField27.setBounds(220, 280, 50, 20);
+        jPanel2.add(jTextField28);
+        jTextField28.setBounds(280, 280, 50, 20);
+        jPanel2.add(jTextField29);
+        jTextField29.setBounds(340, 280, 50, 20);
+        jPanel2.add(jTextField30);
+        jTextField30.setBounds(170, 350, 110, 20);
+
+        jTextField31.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField31ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jTextField31);
+        jTextField31.setBounds(170, 380, 110, 20);
+        jPanel2.add(jTextField32);
+        jTextField32.setBounds(170, 420, 110, 20);
+        jPanel2.add(jTextField33);
+        jTextField33.setBounds(80, 490, 280, 20);
+
+        jButton3.setText("<");
+        jPanel2.add(jButton3);
+        jButton3.setBounds(50, 60, 50, 23);
+
+        jButton4.setText(">");
+        jPanel2.add(jButton4);
+        jButton4.setBounds(100, 60, 50, 23);
+
+        jButton5.setText("Play");
+        jPanel2.add(jButton5);
+        jButton5.setBounds(50, 30, 60, 23);
+
+        jButton6.setText("Pause");
+        jPanel2.add(jButton6);
+        jButton6.setBounds(120, 30, 70, 23);
+
+        jButton7.setText("<");
+        jPanel2.add(jButton7);
+        jButton7.setBounds(403, 330, 50, 23);
+
+        jButton8.setText(">");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton8);
+        jButton8.setBounds(400, 430, 50, 23);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\main.png")); // NOI18N
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(0, 0, 800, 600);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/next.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +237,7 @@ public class Try extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/back.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\M500-S430\\Desktop\\iboy-mencari-cinta\\iBoy-Mencari-Cinta\\src\\back.png")); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -100,17 +248,14 @@ public class Try extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(43, 43, 43)
-                        .add(jButton2)
-                        .add(525, 525, 525)
-                        .add(jButton1)))
-                .addContainerGap(840, Short.MAX_VALUE))
+                .add(10, 10, 10)
+                .add(jButton2)
+                .add(558, 558, 558)
+                .add(jButton1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -118,26 +263,39 @@ public class Try extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(10, 10, 10)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(603, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(1, 1, 1)
+                        .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-jPanel1.setVisible(false);
-        jPanel2.setVisible(true);        // TODO add your handling code here:
+        jPanel2.setVisible(false);
+        jPanel1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      jPanel1.setVisible(true);
-        jPanel2.setVisible(false);
+        jPanel2.setVisible(true);
+        jPanel1.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField22ActionPerformed
+
+    private void jTextField31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField31ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField31ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -153,10 +311,55 @@ jPanel1.setVisible(false);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField22;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField25;
+    private javax.swing.JTextField jTextField26;
+    private javax.swing.JTextField jTextField27;
+    private javax.swing.JTextField jTextField28;
+    private javax.swing.JTextField jTextField29;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField30;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextField34;
+    private javax.swing.JTextField jTextField35;
+    private javax.swing.JTextField jTextField36;
+    private javax.swing.JTextField jTextField37;
+    private javax.swing.JTextField jTextField38;
+    private javax.swing.JTextField jTextField39;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
 }
