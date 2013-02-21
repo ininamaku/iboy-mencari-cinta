@@ -479,7 +479,8 @@ public class IBoyMencariCinta {
         ibot.printIboy();
         
         ibot.initialize(ibot.jumlahminggu);
-           
+        
+        /*
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
             System.out.print("POPULASI ke-" + i);
             ibot.jadwalIboy.get(i).printJadwal();
@@ -488,9 +489,9 @@ public class IBoyMencariCinta {
 
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
             System.out.println(ibot.jadwalIboy.get(i));
-        }
+        } */
         
-        ibot.geneticAlgo(2);
+        ibot.geneticAlgo(100);
         
         /*
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
