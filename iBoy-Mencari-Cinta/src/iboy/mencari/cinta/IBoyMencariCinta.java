@@ -19,7 +19,9 @@ public class IBoyMencariCinta {
     IBoy iboy;
     int jumlahminggu;
     int jumlahKandidat;
-
+    Jadwal bestJadwal; 
+    int maxEn;
+    
     private int random(int maxIndex) {
         Random R = new Random();
         return R.nextInt(maxIndex);
@@ -422,20 +424,42 @@ public class IBoyMencariCinta {
         return iboy.printData2();
     }
     
+    
     public void geneticAlgo(int loopCount) {
         //initialize(jumlahminggu); 
+        int maxEnlightment = 0;
+        int temp; 
+        
         if (loopCount == -1) {
             while (true) {
                 selection();
                 Mutation();
+                for (int i = 0; i < jadwalIboy.size(); i++) {
+                    //untuk populasi ke-i
+                    temp = countEnlightment(jadwalIboy.get(i));
+                    if (temp>maxEnlightment) {
+                        maxEnlightment = temp;
+                        bestJadwal = jadwalIboy.get(i);
+                    }
+                }
             }
         }
         else {
             for (int i=0; i<loopCount; i++) {
                 selection();
                 Mutation();
+                for (int j = 0; j < jadwalIboy.size(); j++) {
+                    //untuk populasi ke-i
+                    temp = countEnlightment(jadwalIboy.get(j));
+                    if (temp>maxEnlightment) {
+                        maxEnlightment = temp;
+                        bestJadwal = jadwalIboy.get(j);
+                    }
+                }
             }
         }
+        
+        maxEn = maxEnlightment;
     }
     /**
      * @param args the command line arguments
@@ -456,7 +480,6 @@ public class IBoyMencariCinta {
         
         ibot.initialize(ibot.jumlahminggu);
            
-        
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
             System.out.print("POPULASI ke-" + i);
             ibot.jadwalIboy.get(i).printJadwal();
@@ -467,25 +490,27 @@ public class IBoyMencariCinta {
             System.out.println(ibot.jadwalIboy.get(i));
         }
         
-        ibot.geneticAlgo(100000);
-
+        ibot.geneticAlgo(2);
+        
+        /*
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
             System.out.print("POPULASI ke-" + i);
             ibot.jadwalIboy.get(i).printJadwal();
             System.out.println("Validate jadwal : " + ibot.validateJadwal(ibot.jadwalIboy.get(i)).type);
             System.out.println("Enlightment : " + ibot.countEnlightment(ibot.jadwalIboy.get(i)));
         } 
-
-        
         for (int i=0; i< ibot.jumlahKandidat; i++) {
             System.out.println("Kandidat " + i);
             for (int j=0; j<ibot.listOfKandidat.get(i).getPrereq().size(); j++) {
                 System.out.println("Preq " + ibot.listOfKandidat.get(i).getPrereq().get(j));            
             }
         }
-        /*
-        /* call genetic algo */
+        */
 
-        /* the result print to output file */
+        /* Print result */
+        System.out.println();
+        System.out.println("Max Enlightment : " + ibot.maxEn);
+        System.out.println("Best Schedule : ");
+        ibot.bestJadwal.printJadwal();
     }
 }
