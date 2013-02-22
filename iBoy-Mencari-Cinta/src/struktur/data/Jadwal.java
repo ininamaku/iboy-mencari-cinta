@@ -35,6 +35,10 @@ public class Jadwal {
         return day;
     }
     
+    public int getMaxDay(){
+        return day.length;
+    }
+    
     /* 
      * Print jadwal iBoy selama 1 minggu 
      */

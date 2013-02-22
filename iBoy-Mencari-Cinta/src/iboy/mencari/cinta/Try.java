@@ -12,6 +12,8 @@
 package iboy.mencari.cinta;
 
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -21,10 +23,15 @@ import javax.swing.JFileChooser;
  */
 public class Try extends javax.swing.JFrame {
 
+    private Thread tread;
+    private boolean start;
+    private int currentHasil;
+    private int currentJam;
     private JFileChooser chooser1;
     private JFileChooser chooser2;
     private int currentKandidat;
     private IBoyMencariCinta ibot;
+    private String dir = System.getProperty("user.dir");
     /** Creates new form Try */
     public Try() {
         initComponents();
@@ -33,6 +40,8 @@ public class Try extends javax.swing.JFrame {
         chooser1 = new JFileChooser();
         chooser2 = new JFileChooser();
         currentKandidat = 1;
+        currentHasil = 0;
+        currentJam = 0;
         ibot = new IBoyMencariCinta();
     }
 
@@ -40,12 +49,27 @@ public class Try extends javax.swing.JFrame {
     {
         switch (no)
         {
-            case 1 : {jTextField6.setText("Kania Azrina"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq().get(1) +""); break;}
-            case 2 : {jTextField6.setText("Sharon Loh"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq()+""); break;}
-            case 3 : {jTextField6.setText("Mamon"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq()+""); break;}
-            case 4 : {jTextField6.setText("nunu"); jTextField7.setText(ibot.listOfKandidat.get(1).getPrereq()+""); break;}
-            
+            case 0 : {jTextField6.setText("Kenny"); jTextField7.setText(printprereq(0)); break;}
+            case 1 : {jTextField6.setText("Sharon"); jTextField7.setText(printprereq(1)); break;}
+            case 2 : {jTextField6.setText("Mamon"); jTextField7.setText(printprereq(2)); break;}
+            case 3 : {jTextField6.setText("Nunu"); jTextField7.setText(printprereq(3)); break;}
+            case 4 : {jTextField6.setText("Frilla"); jTextField7.setText(printprereq(4)); break;}
+            case 5 : {jTextField6.setText("Fira"); jTextField7.setText(printprereq(5)); break;}
+            case 6 : {jTextField6.setText("Monca"); jTextField7.setText(printprereq(6)); break;}
+            case 7 : {jTextField6.setText("Agnes"); jTextField7.setText(printprereq(7)); break;}
+            case 8 : {jTextField6.setText("Gaby"); jTextField7.setText(printprereq(8)); break;}
+            case 9 : {jTextField6.setText("Dwi"); jTextField7.setText(printprereq(9)); break;}
         }    
+    }
+    
+    public String printprereq(int no)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int j=0; j<ibot.listOfKandidat.get(no).getPrereq().size(); j++) {            
+                sb.append(ibot.listOfKandidat.get(no).getPrereq().get(j));
+        }
+        
+        return sb.toString();
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -56,7 +80,6 @@ public class Try extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTextField34 = new javax.swing.JTextField();
         jTextField35 = new javax.swing.JTextField();
@@ -104,14 +127,15 @@ public class Try extends javax.swing.JFrame {
         jTextField31 = new javax.swing.JTextField();
         jTextField32 = new javax.swing.JTextField();
         jTextField33 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -258,28 +282,7 @@ public class Try extends javax.swing.JFrame {
         jPanel2.add(jTextField32);
         jTextField32.setBounds(170, 420, 110, 20);
         jPanel2.add(jTextField33);
-        jTextField33.setBounds(80, 490, 280, 20);
-
-        jButton3.setText("<");
-        jPanel2.add(jButton3);
-        jButton3.setBounds(260, 520, 50, 23);
-
-        jButton4.setText(">");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4);
-        jButton4.setBounds(320, 520, 50, 23);
-
-        jButton5.setText("Play");
-        jPanel2.add(jButton5);
-        jButton5.setBounds(110, 520, 60, 23);
-
-        jButton6.setText("Pause");
-        jPanel2.add(jButton6);
-        jButton6.setBounds(180, 520, 70, 23);
+        jTextField33.setBounds(80, 480, 280, 20);
 
         jButton7.setText("<");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -299,20 +302,55 @@ public class Try extends javax.swing.JFrame {
         jPanel2.add(jButton8);
         jButton8.setBounds(400, 430, 50, 23);
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Kiri");
-        jPanel2.add(jRadioButton1);
-        jRadioButton1.setBounds(110, 550, 90, 23);
+        jButton3.setText("<");
+        jPanel2.add(jButton3);
+        jButton3.setBounds(230, 540, 50, 23);
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Kanan");
-        jPanel2.add(jRadioButton2);
-        jRadioButton2.setBounds(220, 550, 90, 23);
+        jButton4.setText(">");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton4);
+        jButton4.setBounds(290, 540, 50, 23);
+
+        jButton5.setText("Play");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton5);
+        jButton5.setBounds(80, 540, 60, 23);
+
+        jButton6.setText("Pause");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton6);
+        jButton6.setBounds(150, 540, 70, 23);
+
+        jButton13.setText("<<");
+        jPanel2.add(jButton13);
+        jButton13.setBounds(230, 510, 50, 23);
+
+        jButton14.setText(">>");
+        jPanel2.add(jButton14);
+        jButton14.setBounds(290, 510, 50, 23);
+
+        jButton12.setText("Find Solution");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton12);
+        jButton12.setBounds(80, 510, 120, 23);
         jPanel2.add(jLabel3);
         jLabel3.setBounds(440, 190, 260, 90);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/kania.png"))); // NOI18N
         jPanel2.add(jLabel4);
         jLabel4.setBounds(450, 330, 140, 120);
 
@@ -385,21 +423,21 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        currentKandidat += 1;
-        String dir = System.getProperty("user.dir");
+        currentKandidat = currentKandidat + 1;
+        //String dir = System.getProperty("user.dir");
         if (currentKandidat < (ibot.jumlahKandidat+1)){
         switch (currentKandidat) {
-            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(1); break;}
-            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(2); break;}
-            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(3); break;}
-            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(4); break;}
-            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(5); break;}
-            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(6); break;}
-            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(7); break;}
-            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(8); break;}
-            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(9); break;}
-            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(10); break;}
-        }
+            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
+            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
+            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
+            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
+            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
+            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
+            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
+            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
+            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
+            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
+            }
         }
         else
             currentKandidat = ibot.jumlahKandidat;
@@ -411,7 +449,7 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        String dir = System.getProperty("user.dir");
+        //String dir = System.getProperty("user.dir");
         chooser1.setCurrentDirectory(new File(dir));
         int ret = chooser1.showOpenDialog(this);
         if(ret == JFileChooser.APPROVE_OPTION){
@@ -422,7 +460,7 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        String dir = System.getProperty("user.dir");
+        //String dir = System.getProperty("user.dir");
         chooser2.setCurrentDirectory(new File(dir));
         int ret = chooser2.showOpenDialog(this);
         if(ret == JFileChooser.APPROVE_OPTION){
@@ -441,31 +479,81 @@ public class Try extends javax.swing.JFrame {
         jTextField37.setText(ibot.iboy.getMaxEnergy()+"");
         jTextField38.setText(ibot.jumlahKandidat+"");
         jTextField39.setText(ibot.listOfBarang.size()+"");
-        
+        jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        currentKandidat -= 1;
-        String dir = System.getProperty("user.dir");
+        currentKandidat = currentKandidat - 1;
+        //String dir = System.getProperty("user.dir");
         if (currentKandidat < 1)
         {   currentKandidat = 1;}
         
         if (currentKandidat < (ibot.jumlahKandidat+1)){
         switch (currentKandidat) {
-            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(1); break;}
-            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(2); break;}
-            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(3); break;}
-            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(4); break;}
-            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(5); break;}
-            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(6); break;}
-            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(7); break;}
-            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(8); break;}
-            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(9); break;}
-            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(10); break;}
+            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
+            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
+            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
+            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
+            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
+            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
+            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
+            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
+            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
+            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
             }
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        start = true;
+        tread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (start)
+                {
+                    //isi dengan jalan program
+                    if (currentHasil < ibot.bestJadwal.getMaxDay())
+                    {
+                        if (currentJam < 10)
+                        {
+                            jTextField5.setText(ibot.bestJadwal.getDayHour(currentHasil, currentJam));
+                            currentJam = currentJam + 1;
+                        }
+                        else{
+                            currentJam = 0;
+                            currentHasil = currentHasil + 1;
+                        } 
+                    }
+                    else{
+                        start = false;
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Try.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        tread.start();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        start = false;
+        tread.stop();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        ibot.initialize(ibot.jumlahminggu);
+                    //isi dengan jalan program
+                    ibot.geneticAlgo(100);
+                    jTextField9.setText(ibot.maxEn+"");
+                    
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -479,10 +567,12 @@ public class Try extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -497,8 +587,6 @@ public class Try extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
