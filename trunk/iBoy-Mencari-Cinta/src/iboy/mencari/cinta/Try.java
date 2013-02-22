@@ -24,9 +24,13 @@ import javax.swing.JFileChooser;
 public class Try extends javax.swing.JFrame {
 
     private Thread tread;
+    private Thread tread2;
     private boolean start;
+    private boolean start2;
     private int currentHasil;
     private int currentJam;
+    private int speed;
+    private int speed2;
     private JFileChooser chooser1;
     private JFileChooser chooser2;
     private int currentKandidat;
@@ -42,6 +46,8 @@ public class Try extends javax.swing.JFrame {
         currentKandidat = 1;
         currentHasil = 0;
         currentJam = 0;
+        speed = 1000;
+        speed2 = 1000;
         ibot = new IBoyMencariCinta();
     }
 
@@ -49,7 +55,7 @@ public class Try extends javax.swing.JFrame {
     {
         switch (no)
         {
-            case 0 : {jTextField6.setText("Kenny"); jTextField7.setText(printprereq(0)); break;}
+            case 0 : {jTextField6.setText("Kania"); jTextField7.setText(printprereq(0)); break;}
             case 1 : {jTextField6.setText("Sharon"); jTextField7.setText(printprereq(1)); break;}
             case 2 : {jTextField6.setText("Mamon"); jTextField7.setText(printprereq(2)); break;}
             case 3 : {jTextField6.setText("Nunu"); jTextField7.setText(printprereq(3)); break;}
@@ -59,17 +65,54 @@ public class Try extends javax.swing.JFrame {
             case 7 : {jTextField6.setText("Agnes"); jTextField7.setText(printprereq(7)); break;}
             case 8 : {jTextField6.setText("Gaby"); jTextField7.setText(printprereq(8)); break;}
             case 9 : {jTextField6.setText("Dwi"); jTextField7.setText(printprereq(9)); break;}
+            case 10 : {jTextField6.setText(""); jTextField7.setText(""); break;}
         }    
     }
     
     public String printprereq(int no)
     {
         StringBuilder sb = new StringBuilder();
-        for (int j=0; j<ibot.listOfKandidat.get(no).getPrereq().size(); j++) {            
-                sb.append(ibot.listOfKandidat.get(no).getPrereq().get(j));
+        for (int j=0; j<ibot.listOfKandidat.get(no).getPrereq().size(); j++) {
+                sb.append(nama_barang(ibot.listOfKandidat.get(no).getPrereq().get(j)) + ",");
         }
         
         return sb.toString();
+    }
+    
+    public String nama_barang(String c)
+    {
+        String hasil = new String();
+        switch (c)
+        {
+            case "A" : {hasil = "Red Rose"; break;}
+            case "B" : {hasil = "Godiva Chocolate"; break;}
+            case "C" : {hasil = "24 Carat Gold"; break;}
+            case "D" : {hasil = "Cartier Ring"; break;}
+            case "E" : {hasil = "Hermes Bag"; break;}
+            case "F" : {hasil = "Adidas Sneakers"; break;}
+            case "G" : {hasil = "Burberry Shawl"; break;}
+            case "H" : {hasil = "Loubutin Heels"; break;}
+            case "I" : {hasil = "Alexander McQueen Dress"; break;}
+            case "J" : {hasil = "Tiffany & Co Bracelet"; break;}
+            case "K" : {hasil = "Aigner Watch"; break;}
+            case "L" : {hasil = "Chanel Nail Polish"; break;}
+            case "M" : {hasil = "Victoria's Secret Lingerie"; break;}
+            case "N" : {hasil = "L 'Occitane Body Wash"; break;}
+            case "O" : {hasil = "Borjuois Mascara"; break;}
+            case "P" : {hasil = "Make Up Forever Foundation"; break;}
+            case "Q" : {hasil = "Bobbi Brown Gel Eyeliner"; break;}
+            case "R" : {hasil = "YSL Lipstick"; break;}
+            case "S" : {hasil = "Guerlain Blusher"; break;}
+            case "T" : {hasil = "L'oreal Hair Color"; break;}
+            case "U" : {hasil = "Maidenform Thights"; break;}
+            case "V" : {hasil = "Mac Book Pro"; break;}
+            case "W" : {hasil = "iPhone 5"; break;}
+            case "X" : {hasil = "Debenhams Gift Card"; break;}
+            case "Y" : {hasil = "Fuji Instax Polaroid"; break;}
+            case "Z" : {hasil = "Canon EOS 5D Camera"; break;}
+        }
+        
+        return hasil;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -145,8 +188,11 @@ public class Try extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
+        setForeground(java.awt.Color.black);
         setPreferredSize(new java.awt.Dimension(800, 700));
+        setResizable(false);
 
+        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setAlignmentX(0.0F);
         jPanel1.setAlignmentY(0.0F);
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -201,6 +247,7 @@ public class Try extends javax.swing.JFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 800, 600);
 
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setAlignmentX(0.0F);
         jPanel2.setAlignmentY(0.0F);
         jPanel2.setPreferredSize(new java.awt.Dimension(800, 600));
@@ -303,6 +350,11 @@ public class Try extends javax.swing.JFrame {
         jButton8.setBounds(400, 430, 50, 23);
 
         jButton3.setText("<");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton3);
         jButton3.setBounds(230, 540, 50, 23);
 
@@ -334,10 +386,20 @@ public class Try extends javax.swing.JFrame {
         jButton6.setBounds(150, 540, 70, 23);
 
         jButton13.setText("<<");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton13);
         jButton13.setBounds(230, 510, 50, 23);
 
         jButton14.setText(">>");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton14);
         jButton14.setBounds(290, 510, 50, 23);
 
@@ -445,6 +507,18 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        if (speed >= 1000){
+            speed = speed - 500;
+        }
+        else if (speed <= 500)
+        {   
+            if (speed-100 <= 0)
+            {
+                speed = 100;
+            }
+            else
+                speed = speed - 100;
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -518,7 +592,25 @@ public class Try extends javax.swing.JFrame {
                     {
                         if (currentJam < 10)
                         {
-                            jTextField5.setText(ibot.bestJadwal.getDayHour(currentHasil, currentJam));
+                            jTextField1.setText(currentJam + 10 + ".00");
+                            jTextField2.setText(currentHasil + 1 + "");
+                            jTextField3.setText(ibot.iboy.getMoney() + "");
+                            jTextField4.setText(currentHasil/7 + 1 + "");
+                            switch (ibot.bestJadwal.getDayHour(currentHasil, currentJam))
+                            {
+                                case "0" : {jTextField5.setText("iboy capek"); break;}
+                                case "1" : {jTextField5.setText("Kania's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
+                                case "2" : {jTextField5.setText("Sharon's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
+                                case "3" : {jTextField5.setText("Mamon's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
+                                case "4" : {jTextField5.setText("Nunu's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
+                                case "5" : {jTextField5.setText("Frilla's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
+                                case "6" : {jTextField5.setText("Fira's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
+                                case "7" : {jTextField5.setText("Monca's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
+                                case "8" : {jTextField5.setText("Agnes's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
+                                case "9" : {jTextField5.setText("Gaby's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
+                                case "10" : {jTextField5.setText("Dwi's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
+                                default : {jTextField5.setText(nama_barang(ibot.bestJadwal.getDayHour(currentHasil, currentJam))); jLabel4.setIcon(new ImageIcon("")); dataKandidat(10); break;}
+                            }
                             currentJam = currentJam + 1;
                         }
                         else{
@@ -530,7 +622,7 @@ public class Try extends javax.swing.JFrame {
                         start = false;
                     }
                     try {
-                        Thread.sleep(1000);
+                        Thread.sleep(speed);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Try.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -553,7 +645,61 @@ public class Try extends javax.swing.JFrame {
                     ibot.geneticAlgo(100);
                     jTextField9.setText(ibot.maxEn+"");
                     
+        start2 = true;
+        tread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (start2)
+                {
+                    //isi dengan jalan program
+                    
+                    try {
+                        Thread.sleep(speed2);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Try.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
+        tread2.start();
+                    
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (speed >= 500){
+            speed = speed + 500;
+        }
+        else
+        {   speed = speed + 100;
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        if (speed2 >= 500){
+            speed2 = speed2 + 500;
+        }
+        else
+        {   speed2 = speed2 + 100;
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        if (speed2 >= 1000){
+            speed2 = speed2 - 500;
+        }
+        else if (speed2 <= 500)
+        {   
+            if (speed2-100 <= 0)
+            {
+                speed2 = 100;
+            }
+            else
+                speed2 = speed2 - 100;
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
 
     /**
     * @param args the command line arguments
