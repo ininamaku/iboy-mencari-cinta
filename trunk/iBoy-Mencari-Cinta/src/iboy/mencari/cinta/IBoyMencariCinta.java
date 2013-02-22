@@ -44,7 +44,17 @@ public class IBoyMencariCinta {
         }
         return -1;
     }
-
+    
+    private int searchHargaBarang (String id) {
+        for (int i=0; i<listOfBarang.size(); i++) {
+            if (id.compareTo(listOfBarang.get(i).getKode()) == 0) {
+                //barang ketemu. 
+                return listOfBarang.get(i).getHarga();
+            }
+        }
+        return 0;
+    }
+    
     private int isKandidat(String id) {
         for (int i = 0; i < listOfKandidat.size(); i++) {
             if (id.compareTo(listOfKandidat.get(i).getKandidat_id()) == 0) {
@@ -275,6 +285,8 @@ public class IBoyMencariCinta {
         int[] crossIdx = new int[4];
         selectionJadwal.clear();
         crossOverJadwal.clear();
+        selectionJadwal.clear();
+        crossOverJadwal.clear();
         //for each populasi jadwal, hitung enlightment & hitung englightment terkecil
         for (int i = 0; i < 4; i++) {
             en[i] = countEnlightment(jadwalIboy.get(i));
@@ -441,7 +453,7 @@ public class IBoyMencariCinta {
     public void geneticAlgo(int loopCount) {
         int maxEnlightment = 0;
         int temp; 
-        
+        mutationJadwal.clear();
         if (loopCount == -1) { //untuk loop unlimited
             while (true) {
                 selection();
