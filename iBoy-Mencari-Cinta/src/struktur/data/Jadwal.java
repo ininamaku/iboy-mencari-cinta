@@ -52,6 +52,18 @@ public class Jadwal {
         System.out.println("");
     }
     
+    public String printJadwal2(){
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = 0; i<day.length; i++) {
+            for (int j=0; j<10; j++) {
+                sb.append(day[i].hour[j]);
+            }
+        }
+        
+        return sb.toString();
+    }
+    
     @Override
     public String toString(){
        String result = "";

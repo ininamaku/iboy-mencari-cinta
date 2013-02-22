@@ -273,7 +273,8 @@ public class IBoyMencariCinta {
         int minEn = 99999;
         int minIdx = 0;
         int[] crossIdx = new int[4];
-
+        selectionJadwal.clear();
+        crossOverJadwal.clear();
         //for each populasi jadwal, hitung enlightment & hitung englightment terkecil
         for (int i = 0; i < 4; i++) {
             en[i] = countEnlightment(jadwalIboy.get(i));
@@ -459,6 +460,7 @@ public class IBoyMencariCinta {
             for (int i=0; i<loopCount; i++) {
                 selection();
                 Mutation();
+                mutationJadwal.clear();
                 for (int j = 0; j < jadwalIboy.size(); j++) {
                     //untuk populasi ke-i
                     mutationJadwal.add(jadwalIboy.get(j));
