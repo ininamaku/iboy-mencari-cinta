@@ -16,6 +16,7 @@ public class IBoyMencariCinta {
     List<Barang> listOfBarang;      //0..N
     List<Kandidat> listOfKandidat;  //N+1..Max
     List<Jadwal> jadwalKandidat;
+    List<Barang> katalogBarang;
     IBoy iboy;
     int jumlahminggu;
     int jumlahKandidat;
@@ -195,6 +196,7 @@ public class IBoyMencariCinta {
     public void parseInput(String origin) {
         iboy = new IBoy();
         listOfBarang = new Vector<Barang>();
+        katalogBarang = new Vector<Barang>();
         listOfKandidat = new Vector<Kandidat>();
 
         try {
@@ -225,6 +227,7 @@ public class IBoyMencariCinta {
                     }
                 }
                 listOfKandidat.add(kandidat);
+                
             }
             int jumlahBarang = new Integer(Integer.parseInt(line[jumlahKandidat + 2]));
             for (int i = 0; i < jumlahBarang; i++) {
@@ -235,6 +238,7 @@ public class IBoyMencariCinta {
                 barang.setHarga(Integer.parseInt(lineSplit[1]));
                 barang.setRestock(Integer.parseInt(lineSplit[2]));
                 listOfBarang.add(barang);
+                katalogBarang.add(barang);
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(IBoyMencariCinta.class.getName()).log(Level.SEVERE, null, ex);
