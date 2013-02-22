@@ -25,10 +25,13 @@ public class Try extends javax.swing.JFrame {
 
     private Thread tread;
     private Thread tread2;
+    private boolean init;
     private boolean start;
     private boolean start2;
     private int currentHasil;
     private int currentJam;
+    private int currentGold;
+    private int currentEn;
     private int speed;
     private int speed2;
     private JFileChooser chooser1;
@@ -36,6 +39,9 @@ public class Try extends javax.swing.JFrame {
     private int currentKandidat;
     private IBoyMencariCinta ibot;
     private String dir = System.getProperty("user.dir");
+    int maxEnlightment = 0;
+    int temp;
+    int loopCount;
     /** Creates new form Try */
     public Try() {
         initComponents();
@@ -46,8 +52,12 @@ public class Try extends javax.swing.JFrame {
         currentKandidat = 1;
         currentHasil = 0;
         currentJam = 0;
+        currentGold = 0;
+        currentEn = 0;
         speed = 1000;
         speed2 = 1000;
+        init = false;
+        loopCount = 0;
         ibot = new IBoyMencariCinta();
     }
 
@@ -144,7 +154,6 @@ public class Try extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
@@ -170,8 +179,6 @@ public class Try extends javax.swing.JFrame {
         jTextField31 = new javax.swing.JTextField();
         jTextField32 = new javax.swing.JTextField();
         jTextField33 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -266,8 +273,6 @@ public class Try extends javax.swing.JFrame {
         jTextField6.setBounds(590, 340, 120, 20);
         jPanel2.add(jTextField7);
         jTextField7.setBounds(590, 400, 120, 20);
-        jPanel2.add(jTextField8);
-        jTextField8.setBounds(590, 450, 120, 20);
         jPanel2.add(jTextField9);
         jTextField9.setBounds(550, 510, 40, 30);
         jPanel2.add(jTextField10);
@@ -330,24 +335,6 @@ public class Try extends javax.swing.JFrame {
         jTextField32.setBounds(170, 420, 110, 20);
         jPanel2.add(jTextField33);
         jTextField33.setBounds(80, 480, 280, 20);
-
-        jButton7.setText("<");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton7);
-        jButton7.setBounds(403, 330, 50, 23);
-
-        jButton8.setText(">");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton8);
-        jButton8.setBounds(400, 430, 50, 23);
 
         jButton3.setText("<");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -483,28 +470,6 @@ public class Try extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField31ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        currentKandidat = currentKandidat + 1;
-        //String dir = System.getProperty("user.dir");
-        if (currentKandidat < (ibot.jumlahKandidat+1)){
-        switch (currentKandidat) {
-            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
-            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
-            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
-            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
-            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
-            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
-            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
-            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
-            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
-            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
-            }
-        }
-        else
-            currentKandidat = ibot.jumlahKandidat;
-    }//GEN-LAST:event_jButton8ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         if (speed >= 1000){
@@ -553,31 +518,7 @@ public class Try extends javax.swing.JFrame {
         jTextField37.setText(ibot.iboy.getMaxEnergy()+"");
         jTextField38.setText(ibot.jumlahKandidat+"");
         jTextField39.setText(ibot.listOfBarang.size()+"");
-        jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0);
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        currentKandidat = currentKandidat - 1;
-        //String dir = System.getProperty("user.dir");
-        if (currentKandidat < 1)
-        {   currentKandidat = 1;}
-        
-        if (currentKandidat < (ibot.jumlahKandidat+1)){
-        switch (currentKandidat) {
-            case 1 : {jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
-            case 2 : {jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
-            case 3 : {jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
-            case 4 : {jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
-            case 5 : {jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
-            case 6 : {jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
-            case 7 : {jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
-            case 8 : {jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
-            case 9 : {jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
-            case 10 : {jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
-            }
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -598,19 +539,20 @@ public class Try extends javax.swing.JFrame {
                             jTextField4.setText(currentHasil/7 + 1 + "");
                             switch (ibot.bestJadwal.getDayHour(currentHasil, currentJam))
                             {
-                                case "0" : {jTextField5.setText("iboy capek"); break;}
-                                case "1" : {jTextField5.setText("Kania's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
-                                case "2" : {jTextField5.setText("Sharon's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
-                                case "3" : {jTextField5.setText("Mamon's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
-                                case "4" : {jTextField5.setText("Nunu's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
-                                case "5" : {jTextField5.setText("Frilla's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
-                                case "6" : {jTextField5.setText("Fira's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
-                                case "7" : {jTextField5.setText("Monca's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
-                                case "8" : {jTextField5.setText("Agnes's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
-                                case "9" : {jTextField5.setText("Gaby's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
-                                case "10" : {jTextField5.setText("Dwi's turn"); jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
-                                default : {jTextField5.setText(nama_barang(ibot.bestJadwal.getDayHour(currentHasil, currentJam))); jLabel4.setIcon(new ImageIcon("")); dataKandidat(10); break;}
+                                case "0" : {jTextField5.setText("iboy bengong"); jLabel3.setIcon(new ImageIcon(dir+"/src/energy.png")); jLabel4.setIcon(new ImageIcon("")); jTextField6.setText(""); break;}
+                                case "1" : {currentEn=currentEn+ibot.listOfKandidat.get(0).getEnlightenment(); jTextField5.setText("Kania's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/kania.png")); dataKandidat(0); break;}
+                                case "2" : {currentEn=currentEn+ibot.listOfKandidat.get(1).getEnlightenment(); jTextField5.setText("Sharon's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/sharon.png")); dataKandidat(1); break;}
+                                case "3" : {currentEn=currentEn+ibot.listOfKandidat.get(2).getEnlightenment(); jTextField5.setText("Mamon's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/mamon.png")); dataKandidat(2); break;}
+                                case "4" : {currentEn=currentEn+ibot.listOfKandidat.get(3).getEnlightenment(); jTextField5.setText("Nunu's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/nunu.png")); dataKandidat(3); break;}
+                                case "5" : {currentEn=currentEn+ibot.listOfKandidat.get(4).getEnlightenment(); jTextField5.setText("Frilla's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/Girls.png")); dataKandidat(4); break;}
+                                case "6" : {currentEn=currentEn+ibot.listOfKandidat.get(5).getEnlightenment(); jTextField5.setText("Fira's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/fira.png")); dataKandidat(5); break;}
+                                case "7" : {currentEn=currentEn+ibot.listOfKandidat.get(6).getEnlightenment(); jTextField5.setText("Monca's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/moncha.png")); dataKandidat(6); break;}
+                                case "8" : {currentEn=currentEn+ibot.listOfKandidat.get(7).getEnlightenment(); jTextField5.setText("Agnes's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/agnes.png")); dataKandidat(7); break;}
+                                case "9" : {currentEn=currentEn+ibot.listOfKandidat.get(8).getEnlightenment(); jTextField5.setText("Gaby's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/gaby.png")); dataKandidat(8); break;}
+                                case "10" : {currentEn=currentEn+ibot.listOfKandidat.get(9).getEnlightenment(); jTextField5.setText("Dwi's turn"); jLabel3.setIcon(new ImageIcon(dir+"/src/love.png")); jLabel4.setIcon(new ImageIcon(dir+"/src/dwi.png")); dataKandidat(9); break;}
+                                default : {jTextField5.setText(nama_barang(ibot.bestJadwal.getDayHour(currentHasil, currentJam))); jLabel3.setIcon(new ImageIcon(dir+"/src/shop.png")); jLabel4.setIcon(new ImageIcon("")); dataKandidat(10); break;}
                             }
+                            jTextField9.setText(currentEn+"");
                             currentJam = currentJam + 1;
                         }
                         else{
@@ -640,10 +582,16 @@ public class Try extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        ibot.initialize(ibot.jumlahminggu);
-                    //isi dengan jalan program
-                    ibot.geneticAlgo(100);
-                    jTextField9.setText(ibot.maxEn+"");
+        if (!init)
+        {
+            ibot.initialize(ibot.jumlahminggu);
+            maxEnlightment = 0;
+            jTextField14.setText(ibot.initJadwal.get(0)+"");
+            jTextField15.setText(ibot.initJadwal.get(1)+"");
+            jTextField16.setText(ibot.initJadwal.get(2)+"");
+            jTextField17.setText(ibot.initJadwal.get(3)+"");
+            currentGold = ibot.iboy.getMoney();
+        }
                     
         start2 = true;
         tread2 = new Thread(new Runnable() {
@@ -652,6 +600,54 @@ public class Try extends javax.swing.JFrame {
                 while (start2)
                 {
                     //isi dengan jalan program
+                    if (loopCount < 100)
+                    {
+                        jTextField30.setText(loopCount + 1 + "");
+                        ibot.selection();
+                        
+                        jTextField18.setText(ibot.selectionJadwal.get(0)+"");
+                        jTextField19.setText(ibot.selectionJadwal.get(1)+"");
+                        jTextField20.setText(ibot.selectionJadwal.get(2)+"");
+                        jTextField21.setText(ibot.selectionJadwal.get(3)+"");
+                        
+                        jTextField22.setText(ibot.crossOverJadwal.get(0)+"");
+                        jTextField23.setText(ibot.crossOverJadwal.get(1)+"");
+                        jTextField24.setText(ibot.crossOverJadwal.get(2)+"");
+                        jTextField25.setText(ibot.crossOverJadwal.get(3)+"");
+                     
+                        ibot.Mutation();
+                        
+                        for (int j = 0; j < ibot.jadwalIboy.size(); j++) {
+                            //untuk populasi ke-i
+                            ibot.mutationJadwal.add(ibot.jadwalIboy.get(j));
+                            temp = ibot.countEnlightment(ibot.jadwalIboy.get(j));
+                            if (temp>maxEnlightment) {
+                                maxEnlightment = temp;
+                                ibot.bestJadwal = ibot.jadwalIboy.get(j);
+                            }
+                        }
+                        
+                        jTextField10.setText(ibot.countEnlightment(ibot.jadwalIboy.get(0))+"");
+                        jTextField11.setText(ibot.countEnlightment(ibot.jadwalIboy.get(1))+"");
+                        jTextField12.setText(ibot.countEnlightment(ibot.jadwalIboy.get(2))+"");
+                        jTextField13.setText(ibot.countEnlightment(ibot.jadwalIboy.get(3))+"");
+                        
+                        jTextField26.setText(ibot.mutationJadwal.get(0)+"");
+                        jTextField27.setText(ibot.mutationJadwal.get(1)+"");
+                        jTextField28.setText(ibot.mutationJadwal.get(2)+"");
+                        jTextField29.setText(ibot.mutationJadwal.get(3)+"");
+                        
+                        loopCount = loopCount + 1;
+                        
+                        jTextField31.setText(maxEnlightment + "");
+                        jTextField32.setText(ibot.bestJadwal.printJadwal2());
+                    }
+                    else
+                    {
+                        ibot.maxEn = maxEnlightment;
+                        jTextField33.setText(ibot.bestJadwal.printJadwal2());
+                        start2 = false;
+                    }
                     
                     try {
                         Thread.sleep(speed2);
@@ -724,8 +720,6 @@ public class Try extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -772,7 +766,6 @@ public class Try extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
