@@ -19,6 +19,14 @@ public class IBoyMencariCinta {
     IBoy iboy;
     int jumlahminggu;
     int jumlahKandidat;
+    
+    /* temp var untuk tampilin ke GUI */
+    List<Jadwal> initJadwal = new Vector<Jadwal>();
+    Jadwal worstSelectionJadwal;
+    List<Jadwal> selectionJadwal = new Vector<Jadwal>();
+    List<Jadwal> crossOverJadwal = new Vector<Jadwal>();
+    List<Jadwal> mutationJadwal = new Vector<Jadwal>();
+    Jadwal currentBestJadwal;
     Jadwal bestJadwal; 
     int maxEn;
     
@@ -170,6 +178,7 @@ public class IBoyMencariCinta {
             }
 
             jadwalIboy.add(tempJadwal);
+            initJadwal.add(tempJadwal);
         }
     }
 
@@ -277,8 +286,10 @@ public class IBoyMencariCinta {
 
         //cari index untuk crossOver
         int temp = 0;
+        selectionJadwal.add(jadwalIboy.get(minIdx));
         for (int i = 0; i < 4; i++) {
             if (i != minIdx) {
+                selectionJadwal.add(jadwalIboy.get(i));
                 if ((i + 1 != minIdx) && (i + 1 < 4)) {
                     crossIdx[temp] = i;
                     temp++;
@@ -290,7 +301,7 @@ public class IBoyMencariCinta {
                     crossIdx[temp] = i + 2;
                     temp++;
                 }
-            }
+            } 
         }
 
         //crossOver Jadwal crossIdx[0] & Jadwal crossIdx[1]
@@ -301,6 +312,7 @@ public class IBoyMencariCinta {
         jadwalIboy.clear();
         jadwalIboy.addAll(crossedJadwalA);
         jadwalIboy.addAll(crossedJadwalB);
+        crossOverJadwal.addAll(jadwalIboy);
         //System.out.println("minEn = " + minEn + " minIdx = " + minIdx);
     }
 
@@ -426,11 +438,10 @@ public class IBoyMencariCinta {
     
     
     public void geneticAlgo(int loopCount) {
-        //initialize(jumlahminggu); 
         int maxEnlightment = 0;
         int temp; 
         
-        if (loopCount == -1) {
+        if (loopCount == -1) { //untuk loop unlimited
             while (true) {
                 selection();
                 Mutation();
@@ -450,6 +461,7 @@ public class IBoyMencariCinta {
                 Mutation();
                 for (int j = 0; j < jadwalIboy.size(); j++) {
                     //untuk populasi ke-i
+                    mutationJadwal.add(jadwalIboy.get(j));
                     temp = countEnlightment(jadwalIboy.get(j));
                     if (temp>maxEnlightment) {
                         maxEnlightment = temp;
@@ -479,7 +491,6 @@ public class IBoyMencariCinta {
         ibot.printIboy();
         
         ibot.initialize(ibot.jumlahminggu);
-        
         /*
         for (int i = 0; i < ibot.jadwalIboy.size(); i++) {
             System.out.print("POPULASI ke-" + i);
