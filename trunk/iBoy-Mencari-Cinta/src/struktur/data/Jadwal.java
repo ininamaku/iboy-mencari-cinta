@@ -42,10 +42,10 @@ public class Jadwal {
         System.out.println("Jadwal iBoy");
         for (int i = 0; i<day.length; i++) {
             for (int j=0; j<10; j++) {
-                System.out.print(day[i].hour[j] + " ");
+                System.out.print(day[i].hour[j]);
             }
-            System.out.println("");
         }
+        System.out.println("");
     }
     
     @Override
