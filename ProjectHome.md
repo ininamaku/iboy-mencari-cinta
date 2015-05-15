@@ -1,0 +1,1 @@
+Scheduler menggunakan Genetic Algorithm
